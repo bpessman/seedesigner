@@ -7,7 +7,7 @@ var totalRuns = 0;
 
 window.onload = function() {
   var s = "";
-  for (i = 1; i <= 45; i++) {
+  for (i = 1; i <= 30; i++) {
     s += i + ".\n";
   }
   document.getElementById("codeLineNumberArea").value = s;
@@ -26,7 +26,7 @@ function run() {
     start = current;
     scanToken();
   }
-  
+
   totalRuns++;
   tokenList.push(new Token(EOF, "", line, null));
   displayTokenOutput(tokenList);
@@ -62,6 +62,9 @@ function scanToken() {
       break;
     case ';':
       addToken(SEMICOLON, null);
+      break;
+    case ':':
+      addToken(COLON, null);
       break;
     case '/':
       if (match('/')) {
@@ -110,6 +113,7 @@ function scanToken() {
 }
 
 function displayTokenOutput(tokenList) {
-  codeOutputArea.value += "\n<===================== [End of Run: " + totalRuns + "] =====================>\n" + tokenList
-  + "Total Errors: [" + errorList.length + "]\n" + errorList;
+  codeOutputArea.value += "\n=========================== [Run: " + totalRuns + "] ===========================\n" + tokenList
+  + "Total Errors: [" + errorList.length + "]\n" + errorList + "\n" +
+  "======================== [END OF RUN] =========================\n";
 }

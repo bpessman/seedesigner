@@ -8,6 +8,7 @@ var DOT = "DOT";
 var MINUS = "MINUS";
 var PLUS = "PLUS";
 var SEMICOLON = "SEMICOLON";
+var COLON = "COLON";
 var SLASH = "SLASH";
 var STAR = "STAR";
 
@@ -44,6 +45,16 @@ var THIS = "THIS";
 var TRUE = "TRUE";
 var VAR = "VAR";
 var WHILE = "WHILE";
+var NEW = "NEW";
+
+// SVG Object Keywords
+var RECTANGLE = "RECTANGLE";
+var CIRCLE = "CIRCLE";
+var ELLIPSE = "ELLIPSE";
+var LINE = "LINE";
+var POLYGON = "POLYGON";
+var POLYLINE = "POLYLINE";
+var TEXT = "TEXT";
 
 // Keywords in a Map
 var keywordsList = new Map();
@@ -62,6 +73,14 @@ keywordsList.set("this" , THIS);
 keywordsList.set("true" , TRUE);
 keywordsList.set("var" , VAR);
 keywordsList.set("while" , WHILE);
+keywordsList.set("new", NEW);
+keywordsList.set("rectangle", RECTANGLE);
+keywordsList.set("circle", CIRCLE);
+keywordsList.set("ellipse", ELLIPSE);
+keywordsList.set("line", LINE);
+keywordsList.set("polygon", POLYGON);
+keywordsList.set("polyline", POLYLINE);
+keywordsList.set("text", TEXT);
 
 // Special
 var EOF = "EOF";

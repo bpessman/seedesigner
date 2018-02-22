@@ -1,23 +1,24 @@
 <html>
-  <title> SVG Programming Language </title>
+  <title> Crater </title>
   <body>
     <!-- <input type="file" id="fileInput"> -->
-    <h1> SVG Programming Language </h1>
+    <h1> Crater - An SVG Animation Programming Language </h1>
     <button type="button" onclick="compileClicked()" id="compileButton">Compile Code</button>
     <button type="button" onclick="clearClicked()" id="clearButton">Clear Console</button>
     <button type="button" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</button><br>
-    <textarea readonly style="height:600px;width:25px" id="codeLineNumberArea"></textarea>
-    <textarea style="height:600px;width:800px" id="codeInputArea"></textarea>
-    <textarea readonly style="height:600px;width:500px;" id="codeOutputArea"></textarea>
+    <textarea readonly style="height:400px;width:25px" id="codeLineNumberArea"></textarea>
+    <textarea style="height:400px;width:650px" id="codeInputArea"></textarea><br>
+    <textarea readonly style="height:150px;width:680px;" id="codeOutputArea"></textarea>
 
     <script src="common/js/errors/Error.js"></script>
     <script src="common/js/interaction/ButtonActions.js"></script>
-    <script src="common/js/scanner/literals/Identifier.js"></script>
-    <script src="common/js/scanner/literals/Number.js"></script>
-    <script src="common/js/scanner/literals/String.js"></script>
-    <script src="common/js/scanner/HelperMethods.js"></script>
-    <script src="common/js/scanner/Lexer.js"></script>
+    <script src="common/js/lexer/literals/Identifier.js"></script>
+    <script src="common/js/lexer/literals/Number.js"></script>
+    <script src="common/js/lexer/literals/String.js"></script>
+    <script src="common/js/lexer/HelperMethods.js"></script>
+    <script src="common/js/lexer/Lexer.js"></script>
     <script src="common/js/tokens/Token.js"></script>
     <script src="common/js/tokens/TokenType.js"></script>
+    <script src="common/js/parsar/Parsar.js"></script>
   </body>
 </html>

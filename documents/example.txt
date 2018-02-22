@@ -1,0 +1,27 @@
+var x0 = 0;
+var x1 = 100;
+var y0 = 0;
+var y1 = 100;
+var radius = 10;
+var duration = 10;
+
+var rect1 = new rectangle();
+    rect.color(255,0,0);  //RGB values from 0-255
+    rect.alpha(.9); // Transparency from 0-1 in terms of percentage
+    rect.strokeColor(0,255,0);
+    rect.strokeAlpha(.9);
+    rect.strokeSize(1);
+    rect.draw(x0, y0, x1, y1);
+
+var cir1 = new circle();
+    cir.color(255,0,0);
+    cir.alpha(.9);
+    cir.strokeColor(0,255,0);
+    cir.strokeAlpha(.9);
+    cir.strokeSize(1);
+    cir.draw(x0, y0, radius);
+
+var rect2 = new rectangle();
+    rect2.color(255,0,0);
+    rect2.draw(x0, y0, x1, y1);
+    rect2.moveTo(x0, y0, duration);
