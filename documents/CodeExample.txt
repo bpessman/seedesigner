@@ -1,0 +1,24 @@
+// A New SVG Rectangle Object called "Crater"
+var crater >> newRectangle();
+  crater.color >> 0, 255, 255;
+  crater.alpha >> .8;
+  crater.strokeColor >> 0, 255, 0;
+  crater.strokeAlpha >> .8;
+  crater.strokeSize >> 2;
+  crater.size >> 100, 100;
+  crate.pos >> 100, 100;
+
+var asteroid >> newCircle();
+  asteroid.color >> 255, 0, 0;
+  asteroid.size >> 100;
+  asteroid.pos >> 200, 200;
+
+var delay = 10;
+function Update(delay) {
+  crater.pos = crater.pos + 10;
+}
+
+
+
+// Built in Functions
+function Update(delayInMilliSeconds) {} ->> Updates every delayInMilliSeconds

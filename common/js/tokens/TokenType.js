@@ -11,6 +11,7 @@ var SEMICOLON = "SEMICOLON";
 var COLON = "COLON";
 var SLASH = "SLASH";
 var STAR = "STAR";
+var ARROW = "ARROW";
 
 // One or Two Character tokens
 var NOT = "NOT";

@@ -13,9 +13,8 @@ window.onload = function() {
   document.getElementById("codeLineNumberArea").value = s;
 }
 
-function run() {
-  source = document.getElementById("codeInputArea").value;
-
+function run(source) {
+  this.source = source;
   errorList = [];
   tokenList = [];
   line = 1;
@@ -31,6 +30,7 @@ function run() {
   tokenList.push(new Token(EOF, "", line, null));
   displayTokenOutput(tokenList);
   console.log(errorList);
+  return tokenList;
 }
 
 function scanToken() {
@@ -86,7 +86,11 @@ function scanToken() {
       addToken(match('=') ? LESS_EQUAL : LESS, null);
       break;
     case '>':
-      addToken(match('=') ? GREATER_EQUAL : GREATER, null);
+      if (match('>')) {
+        addToken(ARROW, null);
+      } else {
+        addToken(match('=') ? GREATER_EQUAL : GREATER, null);
+      }
       break;
     case ' ':
       break;

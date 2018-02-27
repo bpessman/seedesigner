@@ -1,61 +1,8 @@
-numbers
-  <Digit> = '0' | '...' | '9'
-  <Integer> = <Digit> | <Digit><Integer>
-  <Decimal> = <Integer> '.' <Integer>;
+expression -> literal | unary | binary | grouping ;
 
-letters
-  <Character> = 'a' | '...' | 'z' | 'A' | '...' | 'Z' | <Digit>
-  <String> = <Character> | <Character><String>
-
-expressions
-  <Number-Expression> = <Integer> | <Decimal>
-  <Number-Expression> = <Number-Expression> '*' <Number-Expression>
-  <Number-Expression> = <Number-Expression> '/' <Number-Expression>
-  <Number-Expression> = <Number-Expression> '+' <Number-Expression> |
-  <Number-Expression> = <Number-Expression> '-' <Number-Expression>
-
-  <Integer-Expression> = <Integer>
-  <Integer-Expression> = <Integer-Expression> | <Letter-Expression>
-  <Integer-Expression> = <Integer-Expression> '*' <Integer-Expression>
-  <Integer-Expression> = <Integer-Expression> '/' <Integer-Expression>
-  <Integer-Expression> = <Integer-Expression> '+' <Integer-Expression> |
-  <Integer-Expression> = <Integer-Expression> '-' <Integer-Expression>
-
-  <Decimal-Expression> = <Decimal>
-  <Decimal-Expression> = <Decimal-Expression> | <Decimal-Expression>
-  <Decimal-Expression> = <Decimal-Expression> '*' <Decimal-Expression>
-  <Decimal-Expression> = <Decimal-Expression> '/' <Decimal-Expression>
-  <Decimal-Expression> = <Decimal-Expression> '+' <Decimal-Expression> |
-  <Decimal-Expression> = <Decimal-Expression> '-' <Decimal-Expression>
-
-  <Letter-Expression> = <String> | <Character>
-  <Letter-Expression> =  <Number-Expression> '+' <Letter-Expression> |
-                  <Letter-Expression> '+' <Number-Expression> |
-                  <Letter-Expression> '+' <Letter-Expression>
-
-  <Object-Expression> = <Rectangle> | <Circle>
-
-statements
-  <Statement> = 'var' <Identifier> '=' <Number-Expression> ';' | <Identifier> = <Number-Expression> ';'
-                'var' <Identifier> '=' <Letter-Expression> ';' | <Identifier> = <Letter-Expression> ';'
-                'var' <Identifier> '=' <Object-Expression> ';' | <Identifier> = <Object-Expression> ';'
-
-object-creation
-  <Rectangle> = 'new' 'rectangle' '(' ')' ';'
-      -> color = <Rectangle>'.''color''(' <Integer-Expression> ',' <Integer-Expression> ',' <Integer-Expression> ')' ';'
-      -> alpha = <Rectangle>'.''alpha''(' <Decimal-Expression> ')' ';'
-      -> draw = <Rectangle>'.''draw''(' <Integer-Expression> ',' <Integer-Expression> ',' <Integer-Expression> ','
-                                        <Integer-Expression> ')' ';'
-      -> strokeSize = ?
-      -> strokeColor = ?
-      -> strokeAlpha = ?
-      -> moveTo = ?
-
-  <Circle> = 'new' 'circle' '(' ')' ';'
-      -> color = <Rectangle>'.''color''(' <Integer-Expression> ',' <Integer-Expression> ',' <Integer-Expression> ')' ';'
-      -> alpha = <Rectangle>'.''alpha''(' <Decimal-Expression> ')' ';'
-      -> draw = <Rectangle>'.''draw''(' <Integer-Expression> ',' <Integer-Expression> ',' <Integer-Expression> ')' ';'
-      -> strokeSize = ?
-      -> strokeColor = ?
-      -> strokeAlpha = ?
-      -> moveTo = ?                              
+literal -> NUMBER | STRING | "true" | "false" ;
+grouping -> "(" expression ")" ;
+unary -> ( "-" | "!" ) expression ;
+binary -> expression operator expression
+operator -> comparison | "+" | "-" | "/" | "*" ;
+comparison -> "==" | "<=" | ">=" | "<" | ">"

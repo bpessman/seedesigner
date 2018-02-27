@@ -7,8 +7,16 @@
     <button type="button" onclick="clearClicked()" id="clearButton">Clear Console</button>
     <button type="button" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</button><br>
     <textarea readonly style="height:400px;width:25px" id="codeLineNumberArea"></textarea>
-    <textarea style="height:400px;width:650px" id="codeInputArea"></textarea><br>
-    <textarea readonly style="height:150px;width:680px;" id="codeOutputArea"></textarea>
+    <textarea style="height:400px;width:750px" id="codeInputArea"></textarea>
+
+    <svg width="400px" height="400px">
+       <rect x="0" y="0" width="400" height="400" stroke="black" stroke-width="1" />
+       <circle cx="0" cy="50" r="15" fill="blue" stroke="black" stroke-width="1">
+            <animate attributeName="cx" from="0" to="100" dur="5s" repeatCount="indefinite" />
+       </circle>
+     </svg> <br>
+
+    <textarea readonly style="height:150px;width:780px;" id="codeOutputArea"></textarea>
 
     <script src="common/js/errors/Error.js"></script>
     <script src="common/js/interaction/ButtonActions.js"></script>
@@ -20,5 +28,6 @@
     <script src="common/js/tokens/Token.js"></script>
     <script src="common/js/tokens/TokenType.js"></script>
     <script src="common/js/parsar/Parsar.js"></script>
+    <script src="common/js/parsar/GenerateAst.js"></script>
   </body>
 </html>

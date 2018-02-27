@@ -34,7 +34,6 @@ function isAlphaNumeric(c) {
 }
 
 function isAlpha(c) {
-  console.log(c);
   return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_';
 }
 

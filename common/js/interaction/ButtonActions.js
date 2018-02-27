@@ -1,5 +1,6 @@
 function compileClicked() {
-  run();
+  var _tokens = run(source = document.getElementById("codeInputArea").value);
+  var _ast = parse(_tokens);
 }
 
 function clearClicked() {
