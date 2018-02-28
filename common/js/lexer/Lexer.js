@@ -29,7 +29,6 @@ function run(source) {
   totalRuns++;
   tokenList.push(new Token(EOF, "", line, null));
   displayTokenOutput(tokenList);
-  console.log(errorList);
   return tokenList;
 }
 
@@ -117,7 +116,7 @@ function scanToken() {
 }
 
 function displayTokenOutput(tokenList) {
-  codeOutputArea.value += "\n=========================== [Run: " + totalRuns + "] ===========================\n" + tokenList
+  codeOutputArea.value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
   + "Total Errors: [" + errorList.length + "]\n" + errorList + "\n" +
-  "======================== [END OF RUN] =========================\n";
+  "================= [END OF RUN] ==================\n";
 }

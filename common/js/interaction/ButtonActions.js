@@ -10,3 +10,8 @@ function clearClicked() {
 function clearCodeClicked() {
   document.getElementById("codeInputArea").value = "";
 }
+
+
+document.getElementById('codeInputArea').addEventListener('blur', e => {
+  e.target.focus();
+});

@@ -1,13 +1,15 @@
-function evaluateAll(statementsParsed) {
-  this.evaluate = function() {
-    for(i = 0; i < statements.length; i++) {
-      statementsParsed[i].evaluate();
-    }
-  }
+function expressionAddition(a, b) {
+    return a + b;
 }
 
-function expressionAddition(a, b) {
-  this.calc() = new function() {
-    return a + b;
-  }
+function expressionSubtraction(a, b) {
+  return a - b;
+}
+
+function expressionMultiplication(a, b) {
+  return a * b;
+}
+
+function expressionDivision(a, b) {
+  return a / b;
 }

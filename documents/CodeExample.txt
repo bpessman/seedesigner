@@ -13,12 +13,12 @@ var asteroid >> newCircle();
   asteroid.size >> 100;
   asteroid.pos >> 200, 200;
 
-var delay = 10;
+var delay >> 10;
 function Update(delay) {
-  crater.pos = crater.pos + 10;
+  crater.pos >> crater.pos + 10;
 }
 
 
 
 // Built in Functions
-function Update(delayInMilliSeconds) {} ->> Updates every delayInMilliSeconds
+function Update(delayInMilliSeconds) {} -> Updates every delayInMilliSeconds
