@@ -4,7 +4,7 @@ var line;
 var current;
 var start;
 var totalRuns = 0;
-var debug = false;
+var debug = true;
 
 window.onload = function() {
   var s = "";
@@ -118,7 +118,7 @@ function scanToken() {
 
 function displayTokenOutput(tokenList) {
   if (debug) {
-    codeOutputArea.value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
+    document.getElementById("debugOutputArea").value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
     + "Total Errors: [" + errorList.length + "]\n" + errorList + "\n" +
     "================= [END OF RUN] ==================\n";
   }

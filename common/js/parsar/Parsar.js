@@ -27,7 +27,7 @@ function parse(tokens) {
       currentToken++;
       statements.push(statement);
     }
-
+// ------------- This stuff should change ------------- //
     console.log(statements);
     for (c = 0; c < statements.length; c++) {
       var statement = statements[c];
@@ -61,6 +61,10 @@ function parse(tokens) {
           if (statement.length > 2 && statement[2].getTokenType() == ARROW) {
             if (statement.length > 3 && (statement[3].getTokenType() ==  STRING || statement[3].getTokenType() == NUMBER)) {
               objectList[objectList.length] = (new CreateObject(statement[1].getLexeme(), statement[3].getLiteral(), statement[3].getTokenType()));
+            } else if (statement.length > 3 && objectList.find(variable => variable.getName() == statement[3].getLexeme())) {
+              var value = objectList.find(variable => variable.getName() == statement[3].getLexeme()).getValue();
+              var type = objectList.find(variable => variable.getName() == statement[3].getLexeme()).getType();
+              objectList[objectList.length] = (new CreateObject(statement[1].getLexeme(), value, type));
             }
           }
         }
@@ -103,8 +107,8 @@ function parse(tokens) {
     }
     for (i = 0; i < objectList.length; i++) {
       codeOutputArea.value += "[Object:] " + objectList[i].getName() + " [Value:] " + objectList[i].getValue() + "\n";
-      // console.log(objectList[i].getValue());
     }
+// ------------- This stuff should change ------------- //
   }
 
   function statement() {
