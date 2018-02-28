@@ -70,35 +70,39 @@ function parse(tokens) {
             if (objectList.find(variable => variable.getName() == statement[2].getLexeme())) {
               var a = objectList.find(variable => variable.getName() == statement[0].getLexeme()).getValue();
               var b = objectList.find(variable => variable.getName() == statement[2].getLexeme()).getValue();
-              console.log(expressionAddition(a,b));
+              codeOutputArea.value += "[Identifier A:] " + statement[0].getLexeme() + " [Identifier B:] " +
+                                      statement[2].getLexeme() + " [Value:] " + expressionAddition(a,b) + "\n";
             }
           }
           else if (statement[1].getTokenType() == MINUS) {
             if (objectList.find(variable => variable.getName() == statement[2].getLexeme())) {
               var a = objectList.find(variable => variable.getName() == statement[0].getLexeme()).getValue();
               var b = objectList.find(variable => variable.getName() == statement[2].getLexeme()).getValue();
-              console.log(expressionSubtraction(a,b));
+              codeOutputArea.value += "[Identifier A:] " + statement[0].getLexeme() + " [Identifier B:] " +
+                                      statement[2].getLexeme() + " [Value:] " + expressionSubtraction(a,b) + "\n";
             }
           }
           else if (statement[1].getTokenType() == STAR) {
             if (objectList.find(variable => variable.getName() == statement[2].getLexeme())) {
               var a = objectList.find(variable => variable.getName() == statement[0].getLexeme()).getValue();
               var b = objectList.find(variable => variable.getName() == statement[2].getLexeme()).getValue();
-              console.log(expressionMultiplication(a,b));
+              codeOutputArea.value += "[Identifier A:] " + statement[0].getLexeme() + " [Identifier B:] " +
+                                      statement[2].getLexeme() + " [Value:] " + expressionMultiplication(a,b) + "\n";
             }
           }
           else if (statement[1].getTokenType() == SLASH) {
             if (objectList.find(variable => variable.getName() == statement[2].getLexeme())) {
               var a = objectList.find(variable => variable.getName() == statement[0].getLexeme()).getValue();
               var b = objectList.find(variable => variable.getName() == statement[2].getLexeme()).getValue();
-              console.log(expressionDivision(a,b));
+              codeOutputArea.value += "[Identifier A:] " + statement[0].getLexeme() + " [Identifier B:] " +
+                                      statement[2].getLexeme() + " [Value:] " + expressionDivision(a,b) + "\n";
             }
           }
         }
       }
     }
     for (i = 0; i < objectList.length; i++) {
-
+      codeOutputArea.value += "[Object:] " + objectList[i].getName() + " [Value:] " + objectList[i].getValue() + "\n";
       // console.log(objectList[i].getValue());
     }
   }

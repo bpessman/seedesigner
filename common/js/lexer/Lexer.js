@@ -4,6 +4,7 @@ var line;
 var current;
 var start;
 var totalRuns = 0;
+var debug = false;
 
 window.onload = function() {
   var s = "";
@@ -116,7 +117,9 @@ function scanToken() {
 }
 
 function displayTokenOutput(tokenList) {
-  codeOutputArea.value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
-  + "Total Errors: [" + errorList.length + "]\n" + errorList + "\n" +
-  "================= [END OF RUN] ==================\n";
+  if (debug) {
+    codeOutputArea.value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
+    + "Total Errors: [" + errorList.length + "]\n" + errorList + "\n" +
+    "================= [END OF RUN] ==================\n";
+  }
 }
