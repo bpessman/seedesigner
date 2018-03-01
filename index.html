@@ -1,25 +1,46 @@
 <html>
-  <title> Crater </title>
-  <body>
-    <!-- <input type="file" id="fileInput"> -->
-    <h1> <b>Crater</b> </h1>
-    <button type="button" onclick="compileClicked()" id="compileButton">Compile Code</button>
-    <button type="button" onclick="clearClicked()" id="clearButton">Clear Console</button>
-    <button type="button" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</button><br>
+  <head>
+    <title> Crater </title>
+    <link rel="shortcut icon" href="common/img/craterfavicon.ico">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="common/css/style.css">
+  </head>
 
-    <textarea readonly style="height:400px;width:25px" id="codeLineNumberArea"></textarea>
-    <textarea style="height:400px;width:350px" id="codeInputArea"></textarea>
+  <body style="background-color:Tomato;">
+    <div class="container">
+      <div class="header">
+        <div class="title">
+          <h1><center><img src="common/img/craterlogo.png" width="40%" height="12%"></img></center> <h1>
+        </div>
+        <div class="navigation">
 
-    <svg width="400px" height="400px">
-       <rect x="0" y="0" width="400" height="400" stroke="black" stroke-width="1" />
-       <!-- <circle cx="0" cy="50" r="15" fill="blue" stroke="black" stroke-width="1">
-            <animate attributeName="cx" from="0" to="100" dur="5s" repeatCount="indefinite" />
-       </circle> -->
-     </svg>
-     <textarea readonly style="width:350px;height:400px" id="debugOutputArea"></textarea><br>
+        </div>
+      </div> <!-- Header -->
+        <div class="content">
+          <div class="buttons">
+            <button type="button" style="background-color:rgb(200,200,200)" onclick="compileClicked()" id="compileButton">Compile Code</button>
+            <button type="button" style="background-color:rgb(200,200,200)" onclick="clearClicked()" id="clearButton">Clear Console</button>
+            <button type="button" style="background-color:rgb(200,200,200)" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</button>
+          </div>
+          <textarea style="width:527;height:450;background-color:rgb(243,243,243);" id="codeInputArea"></textarea>
 
-    <textarea readonly style="height:250px;width:1137px;" id="codeOutputArea"></textarea>
+          <svg width="650" height="450">
+             <rect x="0" y="0" width="650" fill="black" height="450" stroke="black" stroke-width="1" />
+              <circle cx="0" cy="50" r="15" fill="blue" stroke="black" stroke-width="1">
+                  <animate attributeName="cx" from="0" to="100%" dur="5s" repeatCount="indefinite" />
+             </circle>
+          </svg>
 
+
+
+          <textarea readonly style="height:300;width:1213;background-color:rgb(243,243,243)" id="codeOutputArea"></textarea>
+        </div> <!-- Content -->
+        <div class="footer">
+
+        </div> <!-- Footer -->
+    </div> <!-- Container -->
+
+    <!-- SCRIPTS -->
     <script src="common/js/errors/Error.js"></script>
     <script src="common/js/interaction/ButtonActions.js"></script>
     <script src="common/js/lexer/literals/Identifier.js"></script>

@@ -4,15 +4,7 @@ var line;
 var current;
 var start;
 var totalRuns = 0;
-var debug = true;
-
-window.onload = function() {
-  var s = "";
-  for (i = 1; i <= 30; i++) {
-    s += i + ".\n";
-  }
-  document.getElementById("codeLineNumberArea").value = s;
-}
+var debug = false;
 
 function run(source) {
   this.source = source;
@@ -118,7 +110,7 @@ function scanToken() {
 
 function displayTokenOutput(tokenList) {
   if (debug) {
-    document.getElementById("debugOutputArea").value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
+    document.getElementById("codeOutputArea").value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
     + "Total Errors: [" + errorList.length + "]\n" + errorList + "\n" +
     "================= [END OF RUN] ==================\n";
   }

@@ -1,0 +1,54 @@
+textarea {
+    resize: none;
+    font-size: 24px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+svg {
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+button:focus, input:focus, textarea:focus {
+    outline: none;
+}
+
+button {
+  font-size: 24px;
+  margin-left: 30px;
+}
+
+.header {
+
+}
+
+.title {
+
+}
+
+.container {
+  padding-left: 5%;
+  padding-right: 5%;
+  min-height: 800px;
+}
+
+.navigation {
+
+}
+
+.content {
+
+}
+
+.double_content {
+  column-count: 2;
+}
+
+.buttons {
+
+}
+
+.footer {
+
+}
