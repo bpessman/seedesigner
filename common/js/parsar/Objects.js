@@ -1,5 +1,4 @@
 var objectList = [];
-var objectListNames = [];
 
 var CreateObject = function(name, value, type) {
   this.name = name;
