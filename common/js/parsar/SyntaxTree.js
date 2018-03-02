@@ -1,60 +1,66 @@
 // ======================= OBJECT CREATION STATEMENT ======================= //
-function StatementObjectCreation(identifier, value, type) {
-  this.identifier = identifier;
+function statementObjectCreation(id, value, type) {
+  this.id = id;
   this.value = value;
   this.type = type;
 
   this.evaluate = function() {
-    if (!objectList.find(variable => variable.getName() == identifier)) {
-      objectList.push(new CreateObject(identifier, value, type))
+    if (objectList.hasOwnProperty("id") != id) {
+      var object = Object.create(objects);
+
+      object.id = id;
+      object.value = value;
+      object.type = type;
+
+      objectList.push(object);
     } else {
-      errorList.push(new Error(null, "You have already created a '" + identifier + "' object."));
+      errorList.push(new Error(null, "You have already created a '" + id + "' object."));
     }
   };
 }
 
 // ======================= OBJECT SET VALUE STATEMENT ======================= //
-function StatementSetObjectValue(identifier, value, type) {
-  this.identifier = identifier;
-  this.value = value;
-  this.type = type;
-
-  this.evaluate = function() {
-    if (objectList.find(variable => variable.getName() == identifier)) {
-      // Stupidly Inefficient Code
-      var index;
-      var counter = 0;
-      objectList.forEach(function(element) {
-        if (element.getName() == identifier) {
-          index = counter;
-        }
-        counter++;
-      });
-      // Stupidly Inefficient Code Ends Here
-
-      if (objectList.find(variable => variable.getName() == value)) {
-        value = objectList.find(variable => variable.getName() == value).getValue();
-      }
-
-      objectList.splice(index, 1);
-      objectList.push(new CreateObject(identifier, value, type))
-    } else {
-      errorList.push(new Error(null, "You have not created a '" + identifier + "' object."));
-    }
-  };
-}
+// function statementSetObjectValue(identifier, value, type) {
+//   this.identifier = identifier;
+//   this.value = value;
+//   this.type = type;
+//
+//   this.evaluate = function() {
+//     if (objectList.find(variable => variable.getName() == identifier)) {
+//       // Stupidly Inefficient Code
+//       var index;
+//       var counter = 0;
+//       console.log("Test: " + objectList.hasOwnProperty("name"));
+//       objectList.forEach(function(element) {
+//         if (element.getName() == identifier) {
+//           index = counter;
+//         }
+//         counter++;
+//       });
+//       // Stupidly Inefficient Code Ends Here
+//
+//       if (objectList.find(variable => variable.getName() == value)) {
+//         value = objectList.find(variable => variable.getName() == value).getValue();
+//       }
+//
+//       objectList.splice(index, 1);
+//       objectList.push(new CreateObject(identifier, value, type))
+//     } else {
+//       errorList.push(new Error(null, "You have not created a '" + identifier + "' object."));
+//     }
+//   };
+// }
 
 // ======================= PRINT STATEMENT ======================= //
-function StatementPrint(value, type) {
+function statementPrint(value) {
   this.value = value;
-  this.type = type;
 
   this.evaluate = function() {
-    if(type == IDENTIFIER && !objectList.find(variable => variable.getName() == value)) {
+    if(type == IDENTIFIER && !isAnObject(value)) {
       errorList.push(new Error(null, "You tried using a identifier which was not initialized yet!"));
     } else {
-      if (objectList.find(variable => variable.getName() == value)) {
-        codeOutputArea.value += objectList.find(variable => variable.getName() == value).getValue() + "\n";
+      if (isAnObject(value)) {
+        codeOutputArea.value += objectList[getObjectIndex(value)].value + "\n";
       } else {
         codeOutputArea.value += value + "\n";
       }
@@ -77,37 +83,3 @@ function StatementPrint(value, type) {
 // ======================= TEXT STATEMENT ======================= //
 
 // ======================= ADDITION EXPRESSION ======================= //
-function ExpressionAddition(a, b) {
-    this.a = a;
-    this.b = b;
-    this.evaluate = function() {
-      //Do Stuff Here
-    }
-}
-
-// ======================= SUBTRACTION EXPRESSION ======================= //
-function ExpressionSubtraction(a, b) {
-  this.a = a;
-  this.b = b;
-  this.evaluate = function() {
-    //Do Stuff Here
-  }
-}
-
-// ======================= MULTIPLICATION EXPRESSION ======================= //
-function ExpressionMultiplication(a, b) {
-  this.a = a;
-  this.b = b;
-  this.evaluate = function() {
-    //Do Stuff Here
-  }
-}
-
-// ======================= DIVISION EXPRESSION ======================= //
-function ExpressionDivision(a, b) {
-  this.a = a;
-  this.b = b;
-  this.evaluate = function() {
-    //Do Stuff Here
-  }
-}
