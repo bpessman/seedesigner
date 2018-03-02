@@ -1,61 +1,59 @@
-program ->
-  statement* EOF ;
+program
+  : statement* EOF;
 
-statement ->
-  object |
-  IF "(" expression comparison expression ")" "{" statement* "}" ;
+statement
+  : object
+  | IF "(" expression comparison expression ")" "{" statement* "}";
 
-object ->
-    shape |
-    expression ;
+object
+    : shape
+    | expression;
 
-expression ->
-    literal  |
-    unary    |
-    binary   |
-    object   |
-    grouping ;
+expression
+    : literal
+    | unary
+    | binary
+    | object
+    | grouping;
 
-literal ->
-    NUMBER  |
-    STRING  |
-    "true"  |
-    "false" ;
+literal
+    : NUMBER
+    | STRING
+    | "true"
+    | "false";
 
-grouping ->
-    "(" expression ")" ;
+grouping
+    : "(" expression ")";
 
-unary ->
-    ( "-" | "!" ) expression ;
+unary
+    : ( "-" | "!" ) expression;
 
-binary ->
-    expression operator expression ;
+binary
+    : expression operator expression;
 
-comparison ->
-    "==" |
-    "<=" |
-    ">=" |
-    "<"  |
-    ">"  ;
+operator
+    : comparison
+    | "+"
+    | "-"
+    | "/"
+    | "*"
+    | ">>"
+    | "%";
 
-operator ->
-    comparison |
-    "+" |
-    "-" |
-    "/" |
-    "*" |
-    ">>"|
-    "%" ;
+comparison
+    : "=="
+    | "<="
+    | ">="
 
-shape ->
-    RECTANGLE |
-    CIRCLE    |
-    ELLIPSE   |
-    LINE      |
-    POLYGON   |
-    POLYLINE  |
-    TEXT      ;
+shape
+    : RECTANGLE
+    | CIRCLE
+    | ELLIPSE
+    | LINE
+    | POLYGON
+    | POLYLINE
+    | TEXT;
 
-loop ->
-    WHILE "(" expression ")" "{" statement* "}"    |
-    DO "{" statement* "}" WHILE "(" expression ")" ;
+loop
+    : WHILE "(" expression ")" "{" statement* "}"
+    | DO "{" statement* "}" WHILE "(" expression ")";
