@@ -19,6 +19,22 @@ button {
   margin-left: 30px;
 }
 
+h2 {
+  font-size: 36px;
+  background-color: black;
+}
+
+.button, a:visited, a:active {
+  color: white;
+  text-decoration:none;
+  padding: 60px;
+}
+
+a:hover {
+  color: Tomato;
+  text-decoration:none;
+}
+
 .header {
 
 }

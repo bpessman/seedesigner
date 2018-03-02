@@ -28,30 +28,24 @@ function parse(tokens) {
 function statementss(statement) {
 // ======================= OBJECT CREATION STATEMENT ======================= //
   if (has(statement, VAR) && has(statement, ARROW)) {
-    var identifier = statement[1].getLexeme();
+    var id = statement[1].getLexeme();
     var value = statement[3].getLiteral();
     var type = statement[3].getTokenType();
 
-    return new statementObjectCreation(identifier, value, type);
+    return new statementObjectCreation(id, value, type);
   }
 // ======================= OBJECT CREATION STATEMENT ======================= //
-  // else if (has(statement, IDENTIFIER) && has(statement, ARROW)) {
-  //   var identifier = statement[0].getLexeme();
-  //   var value;
-  //   console.log(objectList);
-  //   if (objectList.find(variable => variable.getName() == statement[2].getLexeme())) {
-  //     console.log("k");
-  //     value = objectList.find(variable => variable.getName() == statement[2].getLexeme()).getValue();
-  //   } else {
-  //     value = statement[2].getLiteral();
-  //   }
-  //   var type = statement[2].getTokenType();
-  //
-  //   return new statementSetObjectValue(identifier, value, type);
-  // }
+  else if (has(statement, IDENTIFIER) && has(statement, ARROW)) {
+    var id = statement[0].getLexeme();
+    var value = statement[2].getLexeme();
+    var type = statement[2].getTokenType();
+
+    return new statementSetObjectValue(id, value, type);
+  }
 // ======================= PRINT STATEMENT ======================= //
   else if (has(statement, PRINT) && (has(statement, IDENTIFIER) || has(statement, STRING) || has(statement, NUMBER))) {
       var value = statement[1].getLexeme();
+      var type = statement[1].getTokenType();
 
       return new statementPrint(value, type);
     }
