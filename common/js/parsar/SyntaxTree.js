@@ -6,13 +6,7 @@ function statementObjectCreation(id, value, type) {
 
   this.evaluate = function() {
     if (objectList.hasOwnProperty("id") != id) {
-      var object = Object.create(objects);
-
-      object.id = id;
-      object.value = value;
-      object.type = type;
-
-      objectList.push(object);
+      objectList.push(createAnObject(id,value,type));
     } else {
       errorList.push(new Error(null, "You have already created a '" + id + "' object."));
     }
@@ -32,13 +26,7 @@ function statementSetObjectValue(id, value, type) {
       }
 
       objectList.splice(getObjectIndex(id), 1);
-
-      var object = Object.create(objects);
-      object.id = id;
-      object.value = value;
-      object.type = type;
-
-      objectList.push(object);
+      objectList.push(createAnObject(id,value,type));
     } else {
       errorList.push(new Error(null, "You have not created a '" + id + "' object."));
     }
@@ -77,3 +65,11 @@ function statementPrint(value, type) {
 // ======================= TEXT STATEMENT ======================= //
 
 // ======================= ADDITION EXPRESSION ======================= //
+
+// ======================= SUBTRACTION EXPRESSION ======================= //
+
+// ======================= DIVISION EXPRESSION ======================= //
+
+// ======================= MULTIPLICATION EXPRESSION ======================= //
+
+// ======================= MOD EXPRESSION ======================= //

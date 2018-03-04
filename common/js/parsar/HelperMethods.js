@@ -14,6 +14,7 @@ function has(statement, type) {
   return false;
 }
 
+// ----------------- OBJECT HELPER METHODS ----------------- //
 function isAnObject(id) {
   for(var object in objectList) {
     if (objectList[object].id == id) {
@@ -32,4 +33,12 @@ function getObjectIndex(id) {
     index++;
   }
   return -1;
+}
+
+function createAnObject(id, value, type) {
+  var object = Object.create(objects);
+  object.id = id;
+  object.value = value;
+  object.type = type;
+  return object;
 }

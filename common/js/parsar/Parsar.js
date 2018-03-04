@@ -50,7 +50,18 @@ function statementss(statement) {
       return new statementPrint(value, type);
     }
 // ======================= RECTANGLE STATEMENT ======================= //
-
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE)) {
+    // var dog = rectangle (x, y, width, height, red, green, blue);
+    var id = statement[0].getLexeme();
+    var type = statement[3].getTokenType();
+    var x = statement[5].getLexeme();
+    var y = statement[7].getLexeme();
+    var width = statement[9].getLexeme();
+    var height = statement[11].getLexeme();
+    var red = statement[13].getLexeme();
+    var green = statement[15].getLexeme();
+    var blue = statement[17].getLexeme();
+  }
 // ======================= CIRCLE STATEMENT ======================= //
 
 // ======================= ERROR HANDLING FOR UNKNOWN STATEMENTS ======================= //
