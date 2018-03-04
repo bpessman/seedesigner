@@ -29,7 +29,8 @@ function statementss(statement) {
 // ======================= OBJECT CREATION STATEMENT ======================= //
   if (has(statement, VAR) && has(statement, ARROW)) {
     var id = statement[1].getLexeme();
-    var value = statement[3].getLiteral();
+    var value = expression(statement.slice(3, statement.length));
+    // var value = statement[3].getLiteral();
     var type = statement[3].getTokenType();
 
     return new statementObjectCreation(id, value, type);
@@ -70,6 +71,26 @@ function statementss(statement) {
   }
 }
 
-function expression() {
+function expression(tokens) {
+  var value = 0;
+  if (tokens.length != 1) {
+    var left = tokens[0].getLiteral();
+    var operator = tokens[1].getTokenType();
+    var right = tokens[2].getLiteral();
+    value += additionExpression(left,right);
+    tokens = tokens.slice(3, tokens.length);
+
+    while(has(tokens, PLUS)) {
+      var left = value;
+      var operator = tokens[0].getTokenType();
+      var right = tokens[1].getLiteral();
+      value = additionExpression(left,right);
+      tokens = tokens.slice(2, tokens.length);
+    }
+
+    return value;
+  } else {
+    return tokens[0].getLiteral();
+  }
 
 }

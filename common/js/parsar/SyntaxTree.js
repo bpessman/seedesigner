@@ -65,7 +65,12 @@ function statementPrint(value, type) {
 // ======================= TEXT STATEMENT ======================= //
 
 // ======================= ADDITION EXPRESSION ======================= //
+function additionExpression(left, right) {
+  this.left = left;
+  this.right = right;
 
+  return left + right;
+}
 // ======================= SUBTRACTION EXPRESSION ======================= //
 
 // ======================= DIVISION EXPRESSION ======================= //
