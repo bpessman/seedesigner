@@ -77,14 +77,18 @@ function expression(tokens) {
     var left = tokens[0].getLiteral();
     var operator = tokens[1].getTokenType();
     var right = tokens[2].getLiteral();
-    value += additionExpression(left,right);
+
+    value = findExpressionWithOperator(left, operator, right);
+
     tokens = tokens.slice(3, tokens.length);
 
-    while(has(tokens, PLUS)) {
+    while(has(tokens, PLUS) || has(tokens, MINUS) || has(tokens, STAR) || has(tokens, SLASH)) {
       var left = value;
       var operator = tokens[0].getTokenType();
       var right = tokens[1].getLiteral();
-      value = additionExpression(left,right);
+
+      value = findExpressionWithOperator(left, operator, right);
+
       tokens = tokens.slice(2, tokens.length);
     }
 
@@ -92,5 +96,4 @@ function expression(tokens) {
   } else {
     return tokens[0].getLexeme();
   }
-
 }

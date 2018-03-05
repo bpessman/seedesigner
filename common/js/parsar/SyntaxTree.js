@@ -78,9 +78,30 @@ function additionExpression(left, right) {
   return left + right;
 }
 // ======================= SUBTRACTION EXPRESSION ======================= //
+function subtractionExpression(left, right) {
+  this.left = left;
+  this.right = right;
 
+  return left - right;
+}
 // ======================= DIVISION EXPRESSION ======================= //
+function divisionExpression(left, right) {
+  this.left = left;
+  this.right = right;
 
+  return left / right;
+}
 // ======================= MULTIPLICATION EXPRESSION ======================= //
+function multiplicationExpression(left, right) {
+  this.left = left;
+  this.right = right;
 
+  return left * right;
+}
 // ======================= MOD EXPRESSION ======================= //
+function modExpression(left, right) {
+  this.left = left;
+  this.right = right;
+
+  return left % right;
+}

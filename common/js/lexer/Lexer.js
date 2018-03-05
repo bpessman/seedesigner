@@ -52,6 +52,9 @@ function scanToken() {
     case '+':
       addToken(match('+') ? PLUS_PLUS : PLUS, null);
       break;
+    case '%':
+      addToken(MOD, null);
+      break;
     case ';':
       addToken(SEMICOLON, null);
       break;

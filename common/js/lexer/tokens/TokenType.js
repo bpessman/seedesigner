@@ -12,6 +12,7 @@ var COLON = "COLON";
 var SLASH = "SLASH";
 var STAR = "STAR";
 var ARROW = "ARROW";
+var MOD = "MOD";
 
 // One or Two Character tokens
 var NOT = "NOT";
