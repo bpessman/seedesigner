@@ -90,7 +90,7 @@ function expression(tokens) {
 
     return value;
   } else {
-    return tokens[0].getLiteral();
+    return tokens[0].getLexeme();
   }
 
 }

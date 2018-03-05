@@ -5,8 +5,14 @@ function statementObjectCreation(id, value, type) {
   this.type = type;
 
   this.evaluate = function() {
-    if (objectList.hasOwnProperty("id") != id) {
-      objectList.push(createAnObject(id,value,type));
+    if (!isAnObject(id)) {
+      console.log(value);
+      if (isAnObject(value)) {
+        console.log("H");
+        objectList.push(createAnObject(id,objectList[getObjectIndex(value)].value,type));
+      } else {
+        objectList.push(createAnObject(id,value,type));
+      }
     } else {
       errorList.push(new Error(null, "You have already created a '" + id + "' object."));
     }
