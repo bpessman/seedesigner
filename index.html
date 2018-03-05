@@ -19,6 +19,7 @@
      <div class="navigation">
         <h2><center>
           <a href="index.html" class="button">Code!</a>
+          <a href="" class="button">Drawing Examples</a>
           <a href="" class="button">About the Project</a>
           <a href="" class="button">Documentation</a>
         </center></h2>
@@ -30,11 +31,13 @@
             <button type="button" style="background-color:rgb(200,200,200)" onclick="compileClicked()" id="compileButton">Compile Code</button>
             <button type="button" style="background-color:rgb(200,200,200)" onclick="clearClicked()" id="clearButton">Clear Console</button>
             <button type="button" style="background-color:rgb(200,200,200)" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</button>
+            <button type="button" style="background-color:rgb(200,200,200)" onclick="playClicked()" id="playButton">Play</button>
+            <button type="button" style="background-color:rgb(200,200,200)" onclick="pauseClicked()" id="pauseButton">Pause</button>
           </div>
           <textarea style="width:527;height:450;background-color:rgb(243,243,243);" id="codeInputArea"></textarea>
 
           <svg id="canvas" width="650" height="450">
-             
+
           </svg>
 
           <textarea readonly style="height:300;width:1213;background-color:rgb(243,243,243)" id="codeOutputArea"></textarea>

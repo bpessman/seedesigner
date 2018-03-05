@@ -1,0 +1,11 @@
+var r >> rectangle (0,0,600,450,255,255,255);
+
+var c1 >> circle (375,175,60,255,0,0);
+var c2 >> circle (225,175,60,0,255,0);
+var c3>> circle (300,275,60,0,0,255);
+var cBlack >> circle (300,200,75,0,0,0);
+var cWhite >> circle (300,200,50,255,255,255);
+
+var cLeft >> circle (150,175,60,255,255,255);
+var cRight >> circle (450,175,60,255,255,255);
+var cBottom >> circle (300,350,60,255,255,255);

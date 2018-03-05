@@ -70,15 +70,11 @@ function statementRectangle(id, type, x, y, width, height, red, green, blue) {
 
   this.evaluate = function() {
     var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
-    rect.id = id;
+    shapeList.push("rect:" + id);
     rect.setAttribute("id", "rect:" + id);
-    rect.x = x;
     rect.setAttribute("x", x);
-    rect.y = y;
     rect.setAttribute("y", y);
-    rect.width = width;
     rect.setAttribute("width", width);
-    rect.height = height;
     rect.setAttribute("height", height);
     rect.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
     document.getElementById("canvas").appendChild(rect);
@@ -86,7 +82,27 @@ function statementRectangle(id, type, x, y, width, height, red, green, blue) {
 }
 
 // ======================= CIRCLE STATEMENT ======================= //
-
+function statementCircle(id, type, cx, cy, radius, red, green, blue) {
+  this.id = id;
+  this.type = type;
+  this.cx = cx;
+  this.cy = cy;
+  this.radius = radius;
+  this.red = red;
+  this.green = green;
+  this.blue = blue;
+  console.log("Ok");
+  this.evaluate = function() {
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+    shapeList.push("circle:" + id);
+    circle.setAttribute("id", "circle:" + id);
+    circle.setAttribute("cx", cx);
+    circle.setAttribute("cy", cy);
+    circle.setAttribute("r", radius);
+    circle.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
+    document.getElementById("canvas").appendChild(circle);
+  };
+}
 // ======================= ELLIPSE STATEMENT ======================= //
 
 // ======================= LINE STATEMENT ======================= //

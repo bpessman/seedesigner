@@ -1,6 +1,7 @@
 function parse(tokens) {
   // Clears all these lists
   objectList = [];
+  shapeList = [];
   var statements = [];
 
   var currentToken = 0;
@@ -18,7 +19,8 @@ function parse(tokens) {
     currentToken++;
     statements.push(statementss(statement));
   }
-
+  console.log(objectList);
+  console.log(shapeList);
   // Evaluates all the statements
   for (i = 0; i < statements.length; i++) {
     statements[i].evaluate();
@@ -27,7 +29,8 @@ function parse(tokens) {
 
 function statementss(statement) {
 // ======================= OBJECT CREATION STATEMENT ======================= //
-  if (has(statement, VAR) && has(statement, ARROW) && !has(statement, RECTANGLE)) {
+  if (has(statement, VAR) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)) {
+    console.log("create");
     var id = statement[1].getLexeme();
     var value = expression(statement.slice(3, statement.length));
     // var value = statement[3].getLiteral();
@@ -36,7 +39,7 @@ function statementss(statement) {
     return new statementObjectCreation(id, value, type);
   }
 // ======================= OBJECT SET STATEMENT ======================= //
-  else if (has(statement, IDENTIFIER) && has(statement, ARROW) && !has(statement, RECTANGLE)) {
+  else if (has(statement, IDENTIFIER) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)) {
     var id = statement[0].getLexeme();
     var value = statement[2].getLexeme();
     var type = statement[2].getTokenType();
@@ -45,14 +48,13 @@ function statementss(statement) {
   }
 // ======================= PRINT STATEMENT ======================= //
   else if (has(statement, PRINT) && (has(statement, IDENTIFIER) || has(statement, STRING) || has(statement, NUMBER))) {
-      var value = statement[1].getLexeme();
-      var type = statement[1].getTokenType();
+    var value = statement[1].getLexeme();
+    var type = statement[1].getTokenType();
 
-      return new statementPrint(value, type);
-    }
+    return new statementPrint(value, type);
+  }
 // ======================= RECTANGLE STATEMENT ======================= //
   else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE)) {
-    // var dog = rectangle (x, y, width, height, red, green, blue);
     var id = statement[1].getLexeme();
     var type = statement[3].getTokenType();
     var x = statement[5].getLexeme();
@@ -66,7 +68,18 @@ function statementss(statement) {
     return new statementRectangle(id, type, x, y, width, height, red, green, blue);
   }
 // ======================= CIRCLE STATEMENT ======================= //
+else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIRCLE)) {
+  var id = statement[1].getLexeme();
+  var type = statement[3].getTokenType();
+  var cx = statement[5].getLexeme();
+  var cy = statement[7].getLexeme();
+  var radius = statement[9].getLexeme();
+  var red = statement[11].getLexeme();
+  var green = statement[13].getLexeme();
+  var blue = statement[15].getLexeme();
 
+  return new statementCircle(id, type, cx, cy, radius, red, green, blue);
+}
 // ======================= ERROR HANDLING FOR UNKNOWN STATEMENTS ======================= //
   else {
     errorList.push(new Error(statement[0].getLine(), "This statement is not recognized!"));
