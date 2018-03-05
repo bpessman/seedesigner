@@ -27,7 +27,7 @@ function parse(tokens) {
 
 function statementss(statement) {
 // ======================= OBJECT CREATION STATEMENT ======================= //
-  if (has(statement, VAR) && has(statement, ARROW)) {
+  if (has(statement, VAR) && has(statement, ARROW) && !has(statement, RECTANGLE)) {
     var id = statement[1].getLexeme();
     var value = expression(statement.slice(3, statement.length));
     // var value = statement[3].getLiteral();
@@ -35,8 +35,8 @@ function statementss(statement) {
 
     return new statementObjectCreation(id, value, type);
   }
-// ======================= OBJECT CREATION STATEMENT ======================= //
-  else if (has(statement, IDENTIFIER) && has(statement, ARROW)) {
+// ======================= OBJECT SET STATEMENT ======================= //
+  else if (has(statement, IDENTIFIER) && has(statement, ARROW) && !has(statement, RECTANGLE)) {
     var id = statement[0].getLexeme();
     var value = statement[2].getLexeme();
     var type = statement[2].getTokenType();
@@ -53,7 +53,7 @@ function statementss(statement) {
 // ======================= RECTANGLE STATEMENT ======================= //
   else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE)) {
     // var dog = rectangle (x, y, width, height, red, green, blue);
-    var id = statement[0].getLexeme();
+    var id = statement[1].getLexeme();
     var type = statement[3].getTokenType();
     var x = statement[5].getLexeme();
     var y = statement[7].getLexeme();
@@ -62,6 +62,8 @@ function statementss(statement) {
     var red = statement[13].getLexeme();
     var green = statement[15].getLexeme();
     var blue = statement[17].getLexeme();
+
+    return new statementRectangle(id, type, x, y, width, height, red, green, blue);
   }
 // ======================= CIRCLE STATEMENT ======================= //
 
