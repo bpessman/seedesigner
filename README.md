@@ -1,7 +1,2 @@
-# Crater
-A programming language that will allow for programmable SVG animations. Currently in development.
-
-# To Do List
-- Takeout any unnecessary token types
-- Complete the grammar
-- Figure out how animation will work
+# The Crater Programming Language
+Crater is a research project which will hopefully allow for simple, programmable SVG animations. Crater will allow you to export code, import code, and export your final animation.
