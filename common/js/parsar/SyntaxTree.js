@@ -91,7 +91,7 @@ function statementCircle(id, type, cx, cy, radius, red, green, blue) {
   this.red = red;
   this.green = green;
   this.blue = blue;
-  console.log("Ok");
+
   this.evaluate = function() {
     var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
     shapeList.push("circle:" + id);
@@ -106,13 +106,56 @@ function statementCircle(id, type, cx, cy, radius, red, green, blue) {
 // ======================= ELLIPSE STATEMENT ======================= //
 
 // ======================= LINE STATEMENT ======================= //
+function statementLine(id, type, x1, y1, x2, y2, red, green, blue, strokeWidth) {
+  this.id = id;
+  this.type = type;
+  this.x1 = x1;
+  this.y1 = y1;
+  this.x2 = x2;
+  this.y2 = y2;
+  this.red = red;
+  this.green = green;
+  this.blue = blue;
+  this.strokeWidth = strokeWidth;
 
+  this.evaluate = function() {
+    var line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+    shapeList.push("line:" + id);
+    line.setAttribute("id", "circle:" + id);
+    line.setAttribute("x1", x1);
+    line.setAttribute("y1", y1);
+    line.setAttribute("x2", x2);
+    line.setAttribute("y2", y2);
+    line.setAttribute("style", "stroke:rgb(" + red + "," + green + "," + blue + ");stroke-width:" + strokeWidth);
+    document.getElementById("canvas").appendChild(line);
+  };
+}
 // ======================= POLYGON EXPRESSION ======================= //
 
 // ======================= POLYLINE STATEMENT ======================= //
 
 // ======================= TEXT STATEMENT ======================= //
-
+function statementText(id, type, x, y, text, red, green, blue) {
+  this.id = id;
+  this.type = type;
+  this.x = x;
+  this.y = y;
+  this.text = text;
+  this.red = red;
+  this.green = green;
+  this.blue = blue;
+  console.log("Test");
+  this.evaluate = function() {
+    var textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+    shapeList.push("text:" + id);
+    textElement.setAttribute("id", "text:" + id);
+    textElement.setAttribute("x", x);
+    textElement.setAttribute("y", y);
+    textElement.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
+    textElement.innerHTML = text;
+    document.getElementById("canvas").appendChild(textElement);
+  };
+}
 // ======================= ADDITION EXPRESSION ======================= //
 function additionExpression(left, right) {
   this.left = left;
