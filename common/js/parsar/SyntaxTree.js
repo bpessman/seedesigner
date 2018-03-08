@@ -6,9 +6,7 @@ function statementObjectCreation(id, value, type) {
 
   this.evaluate = function() {
     if (!isAnObject(id)) {
-      console.log(value);
       if (isAnObject(value)) {
-        console.log("H");
         objectList.push(createAnObject(id,objectList[getObjectIndex(value)].value,type));
       } else {
         objectList.push(createAnObject(id,value,type));
@@ -70,8 +68,8 @@ function statementRectangle(id, type, x, y, width, height, red, green, blue) {
 
   this.evaluate = function() {
     var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
-    shapeList.push("rect:" + id);
-    rect.setAttribute("id", "rect:" + id);
+    shapeList.push(id);
+    rect.setAttribute("id", id);
     rect.setAttribute("x", x);
     rect.setAttribute("y", y);
     rect.setAttribute("width", width);
@@ -94,8 +92,8 @@ function statementCircle(id, type, cx, cy, radius, red, green, blue) {
 
   this.evaluate = function() {
     var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
-    shapeList.push("circle:" + id);
-    circle.setAttribute("id", "circle:" + id);
+    shapeList.push(id);
+    circle.setAttribute("id", id);
     circle.setAttribute("cx", cx);
     circle.setAttribute("cy", cy);
     circle.setAttribute("r", radius);
@@ -120,8 +118,8 @@ function statementLine(id, type, x1, y1, x2, y2, red, green, blue, strokeWidth) 
 
   this.evaluate = function() {
     var line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-    shapeList.push("line:" + id);
-    line.setAttribute("id", "circle:" + id);
+    shapeList.push(id);
+    line.setAttribute("id", id);
     line.setAttribute("x1", x1);
     line.setAttribute("y1", y1);
     line.setAttribute("x2", x2);
@@ -144,11 +142,11 @@ function statementText(id, type, x, y, text, red, green, blue) {
   this.red = red;
   this.green = green;
   this.blue = blue;
-  console.log("Test");
+
   this.evaluate = function() {
     var textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
-    shapeList.push("text:" + id);
-    textElement.setAttribute("id", "text:" + id);
+    shapeList.push(id);
+    textElement.setAttribute("id", id);
     textElement.setAttribute("x", x);
     textElement.setAttribute("y", y);
     textElement.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
@@ -156,6 +154,28 @@ function statementText(id, type, x, y, text, red, green, blue) {
     document.getElementById("canvas").appendChild(textElement);
   };
 }
+
+// ======================= ANIMATE STATEMENT ======================= //
+function statementAnimate(id, variable, from, to, dur) {
+  this.id = id;
+  this.variable = variable;
+  this.from = from;
+  this.to = to;
+  this.dur = dur;
+
+  this.evaluate = function() {
+    var animation = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+    animation.setAttribute("attributeType", "XML");
+    animation.setAttribute("attributeName", variable);
+    animation.setAttribute("from", from);
+    animation.setAttribute("to", to);
+    animation.setAttribute("dur", dur);
+    animation.setAttribute("repeatCount", "indefinite");
+    console.log(id);
+    document.getElementById(id).appendChild(animation);
+  }
+}
+
 // ======================= ADDITION EXPRESSION ======================= //
 function additionExpression(left, right) {
   this.left = left;

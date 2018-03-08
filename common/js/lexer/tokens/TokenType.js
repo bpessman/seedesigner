@@ -49,7 +49,7 @@ var VAR = "VAR";
 var WHILE = "WHILE";
 var NEW = "NEW";
 
-// SVG Object Keywords
+// SVG Shape Keywords
 var RECTANGLE = "RECTANGLE";
 var CIRCLE = "CIRCLE";
 var ELLIPSE = "ELLIPSE";
@@ -57,6 +57,9 @@ var LINE = "LINE";
 var POLYGON = "POLYGON";
 var POLYLINE = "POLYLINE";
 var TEXT = "TEXT";
+
+// SVG Keywords
+var ANIMATE = "ANIMATE";
 
 // Keywords in a Map
 var keywordsList = new Map();
@@ -83,6 +86,7 @@ keywordsList.set("line", LINE);
 keywordsList.set("polygon", POLYGON);
 keywordsList.set("polyline", POLYLINE);
 keywordsList.set("text", TEXT);
+keywordsList.set("animate", ANIMATE);
 
 // Special
 var EOF = "EOF";
