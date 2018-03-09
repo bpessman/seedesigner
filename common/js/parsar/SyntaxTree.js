@@ -169,9 +169,8 @@ function statementAnimate(id, variable, from, to, dur) {
     animation.setAttribute("attributeName", variable);
     animation.setAttribute("from", from);
     animation.setAttribute("to", to);
-    animation.setAttribute("dur", dur);
+    animation.setAttribute("dur", dur + "ms");
     animation.setAttribute("repeatCount", "indefinite");
-    console.log(id);
     document.getElementById(id).appendChild(animation);
   }
 }
