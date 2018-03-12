@@ -155,26 +155,6 @@ function statementText(id, type, x, y, text, red, green, blue) {
   };
 }
 
-// ======================= ANIMATE STATEMENT ======================= //
-function statementAnimate(id, variable, from, to, dur) {
-  this.id = id;
-  this.variable = variable;
-  this.from = from;
-  this.to = to;
-  this.dur = dur;
-
-  this.evaluate = function() {
-    var animation = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-    animation.setAttribute("attributeType", "XML");
-    animation.setAttribute("attributeName", variable);
-    animation.setAttribute("from", from);
-    animation.setAttribute("to", to);
-    animation.setAttribute("dur", dur + "ms");
-    animation.setAttribute("repeatCount", "indefinite");
-    document.getElementById(id).appendChild(animation);
-  }
-}
-
 // ======================= ADDITION EXPRESSION ======================= //
 function additionExpression(left, right) {
   this.left = left;

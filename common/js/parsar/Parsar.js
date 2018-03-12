@@ -113,16 +113,6 @@ else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEX
 
 // ======================= POLYLINE STATEMENT ======================= //
 
-// ======================= ANIMATION STATEMENT ======================= //
-else if (has(statement, IDENTIFIER) && has(statement, DOT) && has(statement, ANIMATE)) {
-  var id = statement[0].getLexeme();
-  var variable = statement[4].getLiteral();
-  var from = statement[6].getLexeme();
-  var to = statement[8].getLexeme();
-  var dur = statement[10].getLexeme();
-
-  return new statementAnimate(id, variable, from, to, dur);
-}
 // ======================= ERROR HANDLING FOR UNKNOWN STATEMENTS ======================= //
   else {
     errorList.push(new Error(statement[0].getLine(), "This statement is not recognized!"));
