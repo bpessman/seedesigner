@@ -106,7 +106,7 @@ function scanToken() {
       } else if(isAlpha) {
         identifier();
       } else {
-        errorList.push(new Error(line, "Unexpected '" + c + "' character."));
+        errorList.push(new Error(line, "Lexer", "Unexpected '" + c + "' character."));
       }
   }
 }

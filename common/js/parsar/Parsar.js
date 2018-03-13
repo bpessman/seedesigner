@@ -1,7 +1,10 @@
+var parsarLineNumber;
+
 function parse(tokens) {
   // Clears all these lists
   objectList = [];
   shapeList = [];
+  parsarLineNumber = 0;
   var statements = [];
 
   var currentToken = 0;
@@ -18,6 +21,7 @@ function parse(tokens) {
     }
     currentToken++;
     statementss(statement).evaluate();
+    parsarLineNumber++;
     //statements.push(statementss(statement));
   }
 }
@@ -112,7 +116,7 @@ else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEX
 
 // ======================= ERROR HANDLING FOR UNKNOWN STATEMENTS ======================= //
   else {
-    errorList.push(new Error(statement[0].getLine(), "This statement is not recognized!"));
+    errorList.push(new Error(parsarLineNumber, "Parsar", "This statement is not recognized!"));
   }
 }
 

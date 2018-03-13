@@ -12,7 +12,7 @@ function statementObjectCreation(id, value, type) {
         objectList.push(createAnObject(id,value,type));
       }
     } else {
-      errorList.push(new Error(null, "You have already created a '" + id + "' object."));
+      errorList.push(new Error(parsarLineNumber, "Parsar", "You have already created a '" + id + "' object."));
     }
   };
 }
@@ -32,7 +32,7 @@ function statementSetObjectValue(id, value, type) {
       objectList.splice(getObjectIndex(id), 1);
       objectList.push(createAnObject(id,value,type));
     } else {
-      errorList.push(new Error(null, "You have not created a '" + id + "' object."));
+      errorList.push(new Error(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
     }
   };
 }
@@ -214,17 +214,19 @@ function expressionMultiplication() {
 }
 
 function expressionAtom() {
-  if (match_e(NUMBER, STRING)) {
-    return previous_e().getLiteral();
-  } else if (match_e(IDENTIFIER)) {
-    var index = getObjectIndex(previous_e().getLexeme());
-    if (objectList[index].type == STRING) {
-      return objectList[index].value.slice(1, objectList[index].value.length-1);
-    } else if (objectList[index].type == NUMBER) {
-      return parseInt(objectList[index].value);
-    } else {
-      errorList.push(new Error(null, "Unkown Identifier type found!"));
+  try {
+    if (match_e(NUMBER, STRING)) {
+      return previous_e().getLiteral();
+    } else if (match_e(IDENTIFIER)) {
+      var index = getObjectIndex(previous_e().getLexeme());
+      if (objectList[index].type == STRING) {
+        return objectList[index].value.slice(1, objectList[index].value.length-1);
+      } else if (objectList[index].type == NUMBER) {
+        return parseInt(objectList[index].value);
+      }
     }
+  } catch (error) {
+    errorList.push(new Error(parsarLineNumber, "Parsar", error));
   }
 }
 

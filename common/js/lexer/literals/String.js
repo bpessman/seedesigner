@@ -8,7 +8,7 @@ function string() {
   }
 
   if (current >= source.length) {
-    errorList.push(new Error(line, "Unterminated string found."));
+    errorList.push(new Error(line,"Lexer:String","Unterminated string found."));
     return;
   }
   nextCharacter();

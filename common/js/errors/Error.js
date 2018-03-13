@@ -1,10 +1,11 @@
 var errorList = [];
 
-var Error = function(line, message) {
+var Error = function(line, location, message) {
   this.line = line;
   this.message = message;
+  this.location = location;
 
   this.toString = function() {
-    return "ERROR->[Line: " + line + "]:" + " " + message + "\n";
+    return "\t[Line: " + line + "][Location: " + location +  "] ->" + " " + message + "\n";
   };
 };
