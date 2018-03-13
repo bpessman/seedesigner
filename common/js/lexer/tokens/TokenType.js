@@ -61,6 +61,9 @@ var TEXT = "TEXT";
 // SVG Keywords
 var ANIMATE = "ANIMATE";
 
+// Built-In Functions
+var FIXEDUPDATE = "FIXEDUPDATE";
+
 // Keywords in a Map
 var keywordsList = new Map();
 keywordsList.set("and" , AND);
@@ -87,6 +90,7 @@ keywordsList.set("polygon", POLYGON);
 keywordsList.set("polyline", POLYLINE);
 keywordsList.set("text", TEXT);
 keywordsList.set("animate", ANIMATE);
+keywordsList.set("FixedUpdate", FIXEDUPDATE)
 
 // Special
 var EOF = "EOF";

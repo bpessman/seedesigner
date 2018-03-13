@@ -42,15 +42,7 @@ function statementPrint(value, type) {
   this.value = value;
 
   this.evaluate = function() {
-    if(type == IDENTIFIER && !isAnObject(value)) {
-      errorList.push(new Error(null, "You tried using a identifier which was not initialized yet!"));
-    } else {
-      if (isAnObject(value)) {
-        codeOutputArea.value += objectList[getObjectIndex(value)].value + "\n";
-      } else {
-        codeOutputArea.value += value + "\n";
-      }
-    }
+    codeOutputArea.value += value + "\n";
   };
 }
 
@@ -155,36 +147,117 @@ function statementText(id, type, x, y, text, red, green, blue) {
   };
 }
 
+var exprTokens;
+var exprCurrent;
+
+function expr(tokens) {
+  exprTokens = tokens;
+  exprCurrent = 0;
+
+  return expressionAddition();
+}
+
+function previous_e() {
+  return exprTokens[exprCurrent-1];
+}
+
+function peek_e() {
+  return exprTokens[exprCurrent];
+}
+
+function advance_e() {
+  exprCurrent++;
+  return previous_e();
+}
+
+function check_e(type) {
+  try {
+    return peek_e().getTokenType() == type;
+  } catch (error) {
+    return false;
+  }
+}
+
+function match_e() {
+  for (i = 0; i < arguments.length; i++) {
+    if (check_e(arguments[i])) {
+      advance_e();
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function expressionAddition() {
+  var left = expressionMultiplication();
+
+  while (match_e(MINUS, PLUS, MOD)) {
+    var operator = previous_e().getTokenType();
+    var right = expressionMultiplication();
+    left = findExpressionWithOperator(left, operator, right);
+  }
+
+  return left;
+}
+
+function expressionMultiplication() {
+  var left = expressionAtom();
+
+  while (match_e(STAR, SLASH)) {
+    var operator = previous_e().getTokenType();
+    var right = expressionAtom();
+    left = findExpressionWithOperator(left, operator, right);
+  }
+
+  return left;
+}
+
+function expressionAtom() {
+  if (match_e(NUMBER, STRING)) {
+    return previous_e().getLiteral();
+  } else if (match_e(IDENTIFIER)) {
+    var index = getObjectIndex(previous_e().getLexeme());
+    if (objectList[index].type == STRING) {
+      return objectList[index].value.slice(1, objectList[index].value.length-1);
+    } else if (objectList[index].type == NUMBER) {
+      return parseInt(objectList[index].value);
+    } else {
+      errorList.push(new Error(null, "Unkown Identifier type found!"));
+    }
+  }
+}
+
 // ======================= ADDITION EXPRESSION ======================= //
-function additionExpression(left, right) {
+function add(left, right) {
   this.left = left;
   this.right = right;
 
   return left + right;
 }
 // ======================= SUBTRACTION EXPRESSION ======================= //
-function subtractionExpression(left, right) {
+function subtract(left, right) {
   this.left = left;
   this.right = right;
 
   return left - right;
 }
 // ======================= DIVISION EXPRESSION ======================= //
-function divisionExpression(left, right) {
+function divide(left, right) {
   this.left = left;
   this.right = right;
 
   return left / right;
 }
 // ======================= MULTIPLICATION EXPRESSION ======================= //
-function multiplicationExpression(left, right) {
+function multiply(left, right) {
   this.left = left;
   this.right = right;
 
   return left * right;
 }
 // ======================= MOD EXPRESSION ======================= //
-function modExpression(left, right) {
+function mod(left, right) {
   this.left = left;
   this.right = right;
 

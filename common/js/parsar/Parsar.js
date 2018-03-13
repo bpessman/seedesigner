@@ -17,19 +17,14 @@ function parse(tokens) {
       i++;
     }
     currentToken++;
-    statements.push(statementss(statement));
-  }
-
-  // Evaluates all the statements
-  for (i = 0; i < statements.length; i++) {
-    statements[i].evaluate();
+    statementss(statement).evaluate();
+    //statements.push(statementss(statement));
   }
 }
 
 function statementss(statement) {
 // ======================= OBJECT CREATION STATEMENT ======================= //
   if (has(statement, VAR) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE) && !has(statement, LINE) && !has(statement, TEXT)) {
-    console.log("create");
     var id = statement[1].getLexeme();
     var value = expression(statement.slice(3, statement.length));
     // var value = statement[3].getLiteral();
@@ -40,14 +35,14 @@ function statementss(statement) {
 // ======================= OBJECT SET STATEMENT ======================= //
   else if (has(statement, IDENTIFIER) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)&& !has(statement, LINE) && !has(statement, TEXT)) {
     var id = statement[0].getLexeme();
-    var value = statement[2].getLexeme();
+    var value = expression(statement.slice(2, statement.length));
     var type = statement[2].getTokenType();
 
     return new statementSetObjectValue(id, value, type);
   }
 // ======================= PRINT STATEMENT ======================= //
   else if (has(statement, PRINT) && (has(statement, IDENTIFIER) || has(statement, STRING) || has(statement, NUMBER))) {
-    var value = statement[1].getLexeme();
+    var value = expression(statement.slice(1, statement.length));
     var type = statement[1].getTokenType();
 
     return new statementPrint(value, type);
@@ -56,13 +51,13 @@ function statementss(statement) {
   else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE)) {
     var id = statement[1].getLexeme();
     var type = statement[3].getTokenType();
-    var x = statement[5].getLexeme();
-    var y = statement[7].getLexeme();
-    var width = statement[9].getLexeme();
-    var height = statement[11].getLexeme();
-    var red = statement[13].getLexeme();
-    var green = statement[15].getLexeme();
-    var blue = statement[17].getLexeme();
+    var x = expression(statement.slice(5, 6));
+    var y = expression(statement.slice(7, 8));
+    var width = expression(statement.slice(9, 10));
+    var height = expression(statement.slice(11, 12));
+    var red = expression(statement.slice(13, 14));
+    var green = expression(statement.slice(15, 16));
+    var blue = expression(statement.slice(17, 18));
 
     return new statementRectangle(id, type, x, y, width, height, red, green, blue);
   }
@@ -70,12 +65,12 @@ function statementss(statement) {
 else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIRCLE)) {
   var id = statement[1].getLexeme();
   var type = statement[3].getTokenType();
-  var cx = statement[5].getLexeme();
-  var cy = statement[7].getLexeme();
-  var radius = statement[9].getLexeme();
-  var red = statement[11].getLexeme();
-  var green = statement[13].getLexeme();
-  var blue = statement[15].getLexeme();
+  var cx = expression(statement.slice(5, 6));
+  var cy = expression(statement.slice(7, 8));
+  var radius = expression(statement.slice(9, 10));
+  var red = expression(statement.slice(11, 12));
+  var green = expression(statement.slice(13, 14));
+  var blue = expression(statement.slice(15, 16));
 
   return new statementCircle(id, type, cx, cy, radius, red, green, blue);
 }
@@ -83,14 +78,14 @@ else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIR
 else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, LINE)) {
   var id = statement[1].getLexeme();
   var type = statement[3].getTokenType();
-  var x1 = statement[5].getLexeme();
-  var y1 = statement[7].getLexeme();
-  var x2 = statement[9].getLexeme();
-  var y2 = statement[11].getLexeme();
-  var red = statement[13].getLexeme();
-  var green = statement[15].getLexeme();
-  var blue = statement[17].getLexeme();
-  var strokeWidth = statement[19].getLexeme();
+  var x1 = expression(statement.slice(5, 6));
+  var y1 = expression(statement.slice(7, 8));
+  var x2 = expression(statement.slice(9, 10));
+  var y2 = expression(statement.slice(11, 12));
+  var red = expression(statement.slice(13, 14));
+  var green = expression(statement.slice(15, 16));
+  var blue = expression(statement.slice(17, 18));
+  var strokeWidth = expression(statement.slice(19, 20));
 
   return new statementLine(id, type, x1, y1, x2, y2, red, green, blue, strokeWidth);
 }
@@ -98,12 +93,12 @@ else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, LIN
 else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEXT)) {
   var id = statement[1].getLexeme();
   var type = statement[3].getTokenType();
-  var x = statement[5].getLexeme();
-  var y = statement[7].getLexeme();
-  var text = statement[9].getLiteral();
-  var red = statement[11].getLexeme();
-  var green = statement[13].getLexeme();
-  var blue = statement[15].getLexeme();
+  var x = expression(statement.slice(5, 6));
+  var y = expression(statement.slice(7, 8));
+  var text = expression(statement.slice(9, 10));
+  var red = expression(statement.slice(11, 12));
+  var green = expression(statement.slice(13, 14));
+  var blue = expression(statement.slice(15, 16));
 
   return new statementText(id, type, x, y, text, red, green, blue);
 }
@@ -113,6 +108,8 @@ else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEX
 
 // ======================= POLYLINE STATEMENT ======================= //
 
+// ======================= FIXEDUPDATE FUNCTION ======================= //
+
 // ======================= ERROR HANDLING FOR UNKNOWN STATEMENTS ======================= //
   else {
     errorList.push(new Error(statement[0].getLine(), "This statement is not recognized!"));
@@ -120,28 +117,5 @@ else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEX
 }
 
 function expression(tokens) {
-  var value = 0;
-  if (tokens.length != 1) {
-    var left = tokens[0].getLiteral();
-    var operator = tokens[1].getTokenType();
-    var right = tokens[2].getLiteral();
-
-    value = findExpressionWithOperator(left, operator, right);
-
-    tokens = tokens.slice(3, tokens.length);
-
-    while(has(tokens, PLUS) || has(tokens, MINUS) || has(tokens, STAR) || has(tokens, SLASH)) {
-      var left = value;
-      var operator = tokens[0].getTokenType();
-      var right = tokens[1].getLiteral();
-
-      value = findExpressionWithOperator(left, operator, right);
-
-      tokens = tokens.slice(2, tokens.length);
-    }
-
-    return value;
-  } else {
-    return tokens[0].getLexeme();
-  }
+  return expr(tokens);
 }

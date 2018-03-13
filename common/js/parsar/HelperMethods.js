@@ -5,6 +5,10 @@ function checkToken(typeOfToken, index, tokens) {
   return false;
 }
 
+function consume(tokens) {
+  return tokens.slice(1, tokens.length);
+}
+
 function has(statement, type) {
   for (i = 0; i < statement.length; i++) {
     if (statement[i].getTokenType() == type) {
@@ -16,15 +20,15 @@ function has(statement, type) {
 
 function findExpressionWithOperator(left, operator, right) {
   if(operator == PLUS) {
-    return additionExpression(left,right);
+    return add(left,right);
   } else if (operator == MINUS) {
-    return subtractionExpression(left,right);
+    return subtract(left,right);
   } else if (operator == STAR) {
-    return multiplicationExpression(left,right);
+    return multiply(left,right);
   } else if (operator == SLASH) {
-    return divisionExpression(left,right);
+    return divide(left,right);
   } else if (operator == MOD) {
-    return modExpression(left,right);
+    return mod(left,right);
   }
 }
 
