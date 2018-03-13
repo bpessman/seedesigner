@@ -1,3 +1,39 @@
+//----------------------------------------------------------------------------------------------
+//    'Object' Helper Methods
+//----------------------------------------------------------------------------------------------
+
+function isAnObject(id) {
+  for(var object in objectList) {
+    if (objectList[object].id == id) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function getObjectIndex(id) {
+  index = 0;
+  for (var object in objectList) {
+    if (objectList[object].id == id) {
+      return index;
+    }
+    index++;
+  }
+  return -1;
+}
+
+function createAnObject(id, value, type) {
+  var object = Object.create(objects);
+  object.id = id;
+  object.value = value;
+  object.type = type;
+  return object;
+}
+
+//----------------------------------------------------------------------------------------------
+//    'Other' Helper Methods
+//----------------------------------------------------------------------------------------------
+
 function checkToken(typeOfToken, index, tokens) {
   if (tokens[index].getTokenType() == typeOfToken) {
     return true;
@@ -30,33 +66,4 @@ function findExpressionWithOperator(left, operator, right) {
   } else if (operator == MOD) {
     return mod(left,right);
   }
-}
-
-// ----------------- OBJECT HELPER METHODS ----------------- //
-function isAnObject(id) {
-  for(var object in objectList) {
-    if (objectList[object].id == id) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function getObjectIndex(id) {
-  index = 0;
-  for (var object in objectList) {
-    if (objectList[object].id == id) {
-      return index;
-    }
-    index++;
-  }
-  return -1;
-}
-
-function createAnObject(id, value, type) {
-  var object = Object.create(objects);
-  object.id = id;
-  object.value = value;
-  object.type = type;
-  return object;
 }

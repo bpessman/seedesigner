@@ -1,4 +1,7 @@
-// Single-Character Tokens
+//----------------------------------------------------------------------------------------------
+//    Single-Character Tokens
+//----------------------------------------------------------------------------------------------
+
 var LEFT_PAREN = "LEFT_PAREN";
 var RIGHT_PAREN = "RIGHT_PAREN";
 var RIGHT_BRACE = "RIGHT_BRACE";
@@ -14,7 +17,10 @@ var STAR = "STAR";
 var ARROW = "ARROW";
 var MOD = "MOD";
 
-// One or Two Character tokens
+//----------------------------------------------------------------------------------------------
+//    One or Two Character Tokens
+//----------------------------------------------------------------------------------------------
+
 var NOT = "NOT";
 var NOT_EQUAL = "NOT_EQUAL";
 var EQUAL = "EQUAL";
@@ -26,12 +32,18 @@ var LESS_EQUAL = "LESS_EQUAL";
 var PLUS_PLUS = "PLUS_PLUS";
 var MINUS_MINUS = "MINUS_MINUS";
 
-// Literals
+//----------------------------------------------------------------------------------------------
+//    Literal Tokens
+//----------------------------------------------------------------------------------------------
+
 var IDENTIFIER = "IDENTIFIER";
 var STRING = "STRING";
 var NUMBER = "NUMBER";
 
-// Keywords
+//----------------------------------------------------------------------------------------------
+//    Keywords
+//----------------------------------------------------------------------------------------------
+
 var AND = "AND";
 var CLASS = "CLASS";
 var ELSE = "ELSE";
@@ -49,7 +61,10 @@ var VAR = "VAR";
 var WHILE = "WHILE";
 var NEW = "NEW";
 
-// SVG Shape Keywords
+//----------------------------------------------------------------------------------------------
+//    SVG-Specific Keywords
+//----------------------------------------------------------------------------------------------
+
 var RECTANGLE = "RECTANGLE";
 var CIRCLE = "CIRCLE";
 var ELLIPSE = "ELLIPSE";
@@ -58,13 +73,18 @@ var POLYGON = "POLYGON";
 var POLYLINE = "POLYLINE";
 var TEXT = "TEXT";
 
-// SVG Keywords
 var ANIMATE = "ANIMATE";
 
-// Built-In Functions
+//----------------------------------------------------------------------------------------------
+//    Built-In Functions
+//----------------------------------------------------------------------------------------------
+
 var FIXEDUPDATE = "FIXEDUPDATE";
 
-// Keywords in a Map
+//----------------------------------------------------------------------------------------------
+//    Mapped Keywords
+//----------------------------------------------------------------------------------------------
+
 var keywordsList = new Map();
 keywordsList.set("and" , AND);
 keywordsList.set("class" , CLASS);
@@ -92,5 +112,8 @@ keywordsList.set("text", TEXT);
 keywordsList.set("animate", ANIMATE);
 keywordsList.set("FixedUpdate", FIXEDUPDATE)
 
-// Special
+//----------------------------------------------------------------------------------------------
+//    Special
+//----------------------------------------------------------------------------------------------
+
 var EOF = "EOF";

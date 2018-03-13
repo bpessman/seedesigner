@@ -1,11 +1,3 @@
-var tokenList;
-var source;
-var line;
-var current;
-var start;
-var totalRuns = 0;
-var debug = false;
-
 function run(source) {
   this.source = source;
   errorList = [];
