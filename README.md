@@ -1,9 +1,9 @@
-# The Crater Programming Language & Interpeter
-Crater is my personal research for a team research project at the University of Wisconsin-Eau Claire. The goal of this project was to create a simple programming langauge which could allow for SVG animation. As a team of four, we all made seperate languages and interpeters in order to better understand programming languages and to enhance our JavaScript skills.
+# The Crater Programming Language & Interpreter
+Crater is my personal research for a team research project at the University of Wisconsin-Eau Claire. The goal of this project was to create a simple programming language which could allow for SVG animation. As a team of four, we all made separate languages and interpreters in order to better understand programming languages and to enhance our JavaScript skills.
 
 ## To Do List
 - [x] Remove SMIL-based animations.
-- [x] Add recursive mathamatical expressions (Allow for order of operations rather than evaluating from left to right)
+- [x] Add recursive mathematical expressions (Allow for order of operations rather than evaluating from left to right)
 - [x] Allow for variables to be used in statements.
 - [ ] Make error handling more useful. Also, I need to catch more errors and handle them.
 
