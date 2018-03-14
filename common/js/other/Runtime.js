@@ -1,9 +1,17 @@
+totalRuns = 0;
+
 function runProgram() {
+  var startTime = new Date().getTime();
+
   resetInformation();
 
   parse(run(source = document.getElementById("codeInputArea").value));
 
   checkForErrors();
+
+  var endTime = new Date().getTime();
+  var time = endTime - startTime;
+  // debug(time);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -26,13 +34,26 @@ function resetInformation() {
   while (canvas.hasChildNodes()) {
     canvas.removeChild(canvas.lastChild);
   }
-  
-  parsarLineNumber = 0;
-  objectList = [];
-  errorList = [];
-  tokenList = [];
+
+  // Global Lexer Variables
   line = 1;
   current = 0;
   start = 0;
-  totalRuns = 0;
+  tokenList = [];
+
+  // Global Parsar Variables
+  parsarLineNumber = 0;
+  objectList = [];
+  shapeList = [];
+
+  // Other Global Variables
+  errorList = [];
+}
+
+//----------------------------------------------------------------------------------------------
+//    Debug Information
+//----------------------------------------------------------------------------------------------
+
+function debug(time) {
+  codeOutputArea.value += "Debug Information->[Run:" + totalRuns + "]" + "[Time:" + time + "ms]\n"
 }
