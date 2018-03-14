@@ -35,7 +35,7 @@ function createAnObject(id, value, type) {
 //----------------------------------------------------------------------------------------------
 
 function checkToken(typeOfToken, index, tokens) {
-  if (tokens[index].getTokenType() == typeOfToken) {
+  if (tokens[index].type == typeOfToken) {
     return true;
   }
   return false;
@@ -47,7 +47,7 @@ function consume(tokens) {
 
 function has(statement, type) {
   for (i = 0; i < statement.length; i++) {
-    if (statement[i].getTokenType() == type) {
+    if (statement[i].type == type) {
       return true;
     }
   }

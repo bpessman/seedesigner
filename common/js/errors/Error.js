@@ -1,11 +1,11 @@
 var errorList = [];
 
-var Error = function(line, location, message) {
+function ThrowError(line, location, message) {
   this.line = line;
   this.message = message;
   this.location = location;
+}
 
-  this.toString = function() {
-    return "\t[Line: " + line + "][Location: " + location +  "] ->" + " " + message + "\n";
-  };
-};
+ThrowError.prototype.getString = function() {
+  return "[Line: " + this.line + "]\n[Location: " + this.location +  "]\n ->" + " " + this.message + "\n\n";
+}

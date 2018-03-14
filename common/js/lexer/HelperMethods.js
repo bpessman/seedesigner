@@ -41,9 +41,9 @@ function isDigit(c) {
   return c >= '0' && c <= '9';
 }
 
-function addToken(tokenType, literal) {
+function addToken(type, literal) {
   var text = source.substring(start, current);
-  tokenList.push(new Token(tokenType, text, line, literal));
+  tokenList.push(new Token(type, text, line, literal));
 }
 
 function isAtEnd() {

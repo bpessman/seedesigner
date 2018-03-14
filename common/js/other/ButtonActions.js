@@ -11,7 +11,7 @@ function clearCodeClicked() {
 }
 
 function playClicked() {
-
+  
 }
 
 function pauseClicked() {

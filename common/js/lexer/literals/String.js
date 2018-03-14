@@ -1,14 +1,15 @@
 function string() {
   while (peek() != '"' && !isAtEnd()) {
-
     if (peek() == '\n') {
       line++;
     }
+
     nextCharacter();
   }
 
   if (current >= source.length) {
-    errorList.push(new Error(line,"Lexer:String","Unterminated string found."));
+    errorList.push(new ThrowError(line,"Lexer:String","Unterminated string found."));
+
     return;
   }
   nextCharacter();

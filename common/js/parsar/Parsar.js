@@ -37,10 +37,10 @@ function statementss(statement) {
   //----------------------------------------------------------------------------------------------
 
   if (has(statement, VAR) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE) && !has(statement, LINE) && !has(statement, TEXT)) {
-    var id = statement[1].getLexeme();
+    var id = statement[1].lexeme;
     var value = expression(statement.slice(3, statement.length));
     // var value = statement[3].getLiteral();
-    var type = statement[3].getTokenType();
+    var type = statement[3].type;
 
     return new statementObjectCreation(id, value, type);
   }
@@ -50,9 +50,9 @@ function statementss(statement) {
   //----------------------------------------------------------------------------------------------
 
   else if (has(statement, IDENTIFIER) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)&& !has(statement, LINE) && !has(statement, TEXT)) {
-    var id = statement[0].getLexeme();
+    var id = statement[0].lexeme;
     var value = expression(statement.slice(2, statement.length));
-    var type = statement[2].getTokenType();
+    var type = statement[2].type;
 
     return new statementSetObjectValue(id, value, type);
   }
@@ -63,7 +63,7 @@ function statementss(statement) {
 
   else if (has(statement, PRINT) && (has(statement, IDENTIFIER) || has(statement, STRING) || has(statement, NUMBER))) {
     var value = expression(statement.slice(1, statement.length));
-    var type = statement[1].getTokenType();
+    var type = statement[1].type;
 
     return new statementPrint(value, type);
   }
@@ -73,8 +73,8 @@ function statementss(statement) {
   //----------------------------------------------------------------------------------------------
 
   else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE)) {
-    var id = statement[1].getLexeme();
-    var type = statement[3].getTokenType();
+    var id = statement[1].lexeme;
+    var type = statement[3].type;
     var x = expression(statement.slice(5, 6));
     var y = expression(statement.slice(7, 8));
     var width = expression(statement.slice(9, 10));
@@ -91,8 +91,8 @@ function statementss(statement) {
   //----------------------------------------------------------------------------------------------
 
   else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIRCLE)) {
-    var id = statement[1].getLexeme();
-    var type = statement[3].getTokenType();
+    var id = statement[1].lexeme;
+    var type = statement[3].type;
     var cx = expression(statement.slice(5, 6));
     var cy = expression(statement.slice(7, 8));
     var radius = expression(statement.slice(9, 10));
@@ -108,8 +108,8 @@ function statementss(statement) {
   //----------------------------------------------------------------------------------------------
 
   else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, LINE)) {
-    var id = statement[1].getLexeme();
-    var type = statement[3].getTokenType();
+    var id = statement[1].lexeme;
+    var type = statement[3].type;
     var x1 = expression(statement.slice(5, 6));
     var y1 = expression(statement.slice(7, 8));
     var x2 = expression(statement.slice(9, 10));
@@ -127,8 +127,8 @@ function statementss(statement) {
   //----------------------------------------------------------------------------------------------
 
   else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEXT)) {
-    var id = statement[1].getLexeme();
-    var type = statement[3].getTokenType();
+    var id = statement[1].lexeme;
+    var type = statement[3].type;
     var x = expression(statement.slice(5, 6));
     var y = expression(statement.slice(7, 8));
     var text = expression(statement.slice(9, 10));
@@ -168,7 +168,7 @@ function statementss(statement) {
   //----------------------------------------------------------------------------------------------
 
   else {
-    errorList.push(new Error(parsarLineNumber, "Parsar", "This statement is not recognized!"));
+    errorList.push(new ThrowError(parsarLineNumber, "Parsar", "This statement is not recognized!"));
   }
 
   //----------------------------------------------------------------------------------------------

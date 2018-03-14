@@ -1,10 +1,5 @@
 function run(source) {
   this.source = source;
-  errorList = [];
-  tokenList = [];
-  line = 1;
-  current = 0;
-  start = 0;
 
   while(!isAtEnd()) {
     start = current;
@@ -13,9 +8,13 @@ function run(source) {
 
   totalRuns++;
   tokenList.push(new Token(EOF, "", line, null));
-  displayTokenOutput(tokenList);
+
   return tokenList;
 }
+
+//----------------------------------------------------------------------------------------------
+//    Scanning the Tokens
+//----------------------------------------------------------------------------------------------
 
 function scanToken() {
   var c = nextCharacter();
@@ -98,15 +97,7 @@ function scanToken() {
       } else if(isAlpha) {
         identifier();
       } else {
-        errorList.push(new Error(line, "Lexer", "Unexpected '" + c + "' character."));
+        errorList.push(new ThrowError(line, "Lexer", "Unexpected '" + c + "' character."));
       }
-  }
-}
-
-function displayTokenOutput(tokenList) {
-  if (debug) {
-    document.getElementById("codeOutputArea").value += "\n==================== [Run: " + totalRuns + "] ====================\n" + tokenList
-    + "Total Errors: [" + errorList.length + "]\n" + errorList + "\n" +
-    "================= [END OF RUN] ==================\n";
   }
 }

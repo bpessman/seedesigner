@@ -10,7 +10,7 @@ var current;
 
 var start;
 
-var totalRuns = 0;
+var totalRuns;
 
 var debug = false;
 

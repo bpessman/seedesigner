@@ -15,7 +15,7 @@ function statementObjectCreation(id, value, type) {
         objectList.push(createAnObject(id,value,type));
       }
     } else {
-      errorList.push(new Error(parsarLineNumber, "Parsar", "You have already created a '" + id + "' object."));
+      errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have already created a '" + id + "' object."));
     }
   };
 }
@@ -38,7 +38,7 @@ function statementSetObjectValue(id, value, type) {
       objectList.splice(getObjectIndex(id), 1);
       objectList.push(createAnObject(id,value,type));
     } else {
-      errorList.push(new Error(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
+      errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
     }
   };
 }
@@ -207,7 +207,7 @@ function advance_e() {
 
 function check_e(type) {
   try {
-    return peek_e().getTokenType() == type;
+    return peek_e().type == type;
   } catch (error) {
     return false;
   }
@@ -232,7 +232,7 @@ function expressionAddition() {
   var left = expressionMultiplication();
 
   while (match_e(MINUS, PLUS, MOD)) {
-    var operator = previous_e().getTokenType();
+    var operator = previous_e().type;
     var right = expressionMultiplication();
     left = findExpressionWithOperator(left, operator, right);
   }
@@ -244,7 +244,7 @@ function expressionMultiplication() {
   var left = expressionAtom();
 
   while (match_e(STAR, SLASH)) {
-    var operator = previous_e().getTokenType();
+    var operator = previous_e().type;
     var right = expressionAtom();
     left = findExpressionWithOperator(left, operator, right);
   }
@@ -255,9 +255,9 @@ function expressionMultiplication() {
 function expressionAtom() {
   try {
     if (match_e(NUMBER, STRING)) {
-      return previous_e().getLiteral();
+      return previous_e().literal;
     } else if (match_e(IDENTIFIER)) {
-      var index = getObjectIndex(previous_e().getLexeme());
+      var index = getObjectIndex(previous_e().lexeme);
       if (objectList[index].type == STRING) {
         return objectList[index].value.slice(1, objectList[index].value.length-1);
       } else if (objectList[index].type == NUMBER) {
@@ -265,7 +265,7 @@ function expressionAtom() {
       }
     }
   } catch (error) {
-    errorList.push(new Error(parsarLineNumber, "Parsar", error));
+    errorList.push(new ThrowError(parsarLineNumber, "Parsar", error));
   }
 }
 
