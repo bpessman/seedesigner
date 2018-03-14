@@ -1,13 +1,10 @@
 textarea {
     resize: none;
     font-size: 16px;
-    margin-left: 8px;
-    margin-bottom: 30px;
 }
 
 svg {
-  margin-left: 30px;
-  margin-bottom: 30px;
+  background-color: black;
 }
 
 button:focus, input:focus, textarea:focus {
@@ -44,9 +41,9 @@ a:hover {
 }
 
 .container {
-  padding-left: 5%;
-  padding-right: 5%;
-  min-height: 800px;
+  padding-left: 0;
+  padding-right: 0;
+  min-height: 600px;
 }
 
 .navigation {
@@ -54,14 +51,6 @@ a:hover {
 }
 
 .content {
-
-}
-
-.double_content {
-  column-count: 2;
-}
-
-.buttons {
 
 }
 

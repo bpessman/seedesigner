@@ -6,43 +6,42 @@
     <link rel="stylesheet" href="common/css/style.css">
   </head>
 
-
-
   <body style="background-color:Tomato;">
     <div class="header">
       <div class="title">
-
       </div>
-
     </div> <!-- Header -->
 
-     <div class="navigation">
-        <h2><center>
-          <a href="index.html" class="button">Code!</a>
-          <a href="" class="button">Drawing Examples</a>
-          <a href="" class="button">About the Project</a>
-          <a href="" class="button">Documentation</a>
-        </center></h2>
-      </div>
+    <div class="navigation">
+      <h2><center>
+        <a class="button" onclick="compileClicked()" id="compileButton">Compile Code</a>
+        <a class="button" type="button" onclick="clearClicked()" id="clearButton">Clear Console</a>
+        <a class="button" type="button" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</a>
+        <a class="button" type="button" onclick="playClicked()" id="playButton">Play</a>
+        <a class="button" type="button" onclick="pauseClicked()" id="pauseButton">Pause</a>
+
+      </center></h2>
+    </div>
 
     <div class="container">
-        <div class="content">
-          <div class="buttons">
-            <button type="button" style="background-color:rgb(200,200,200)" onclick="compileClicked()" id="compileButton">Compile Code</button>
-            <button type="button" style="background-color:rgb(200,200,200)" onclick="clearClicked()" id="clearButton">Clear Console</button>
-            <button type="button" style="background-color:rgb(200,200,200)" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</button>
-            <button type="button" style="background-color:rgb(200,200,200)" onclick="playClicked()" id="playButton">Play</button>
-            <button type="button" style="background-color:rgb(200,200,200)" onclick="pauseClicked()" id="pauseButton">Pause</button>
-          </div>
-          <textarea style="width:527;height:450;background-color:rgb(243,243,243);" id="codeInputArea"></textarea>
+      <div class="content">
+        <div class="buttons">
+          <!-- <button type="button" style="background-color:rgb(200,200,200)" onclick="compileClicked()" id="compileButton">Compile Code</button>
+          <button type="button" style="background-color:rgb(200,200,200)" onclick="clearClicked()" id="clearButton">Clear Console</button>
+          <button type="button" style="background-color:rgb(200,200,200)" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</button>
+          <button type="button" style="background-color:rgb(200,200,200)" onclick="playClicked()" id="playButton">Play</button>
+          <button type="button" style="background-color:rgb(200,200,200)" onclick="pauseClicked()" id="pauseButton">Pause</button> -->
+        </div>
 
-          <svg id="canvas" width="650" height="450"></svg>
+        <textarea style="width:530;height:450;background-color:rgb(243,243,243);" id="codeInputArea"></textarea>
 
-          <textarea readonly style="height:300;width:1213;background-color:rgb(243,243,243)" id="codeOutputArea"></textarea>
-        </div> <!-- Content -->
-        <div class="footer">
+        <svg id="canvas" width="890" height="450"></svg>
 
-        </div> <!-- Footer -->
+        <textarea readonly style="width:530;height:250;background-color:rgb(243,243,243)" id="codeOutputArea"></textarea>
+      </div> <!-- Content -->
+
+      <div class="footer">
+      </div> <!-- Footer -->
     </div> <!-- Container -->
 
     <!-- SCRIPTS -->
@@ -63,5 +62,5 @@
     <script src="common/js/parsar/objects/Objects.js"></script>
     <script src="common/js/parsar/HelperMethods.js"></script>
     <script src="common/js/other/Runtime.js"></script>
-</body>
+  </body>
 </html>
