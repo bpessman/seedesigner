@@ -1,13 +1,4 @@
 function parse(tokens) {
-  //----------------------------------------------------------------------------------------------
-  //    Clears Lists and Initializes Variables
-  //----------------------------------------------------------------------------------------------
-
-  objectList = [];
-  shapeList = [];
-  var statements = [];
-
-  parsarLineNumber = 0;
   var currentToken = 0;
 
   //----------------------------------------------------------------------------------------------
@@ -24,13 +15,13 @@ function parse(tokens) {
       i++;
     }
 
-    statementss(statement).evaluate();
+    statements(statement).evaluate();
     currentToken++;
     parsarLineNumber++;
   }
 }
 
-function statementss(statement) {
+function statements(statement) {
 
   //----------------------------------------------------------------------------------------------
   //    Object Creation Statement
@@ -164,7 +155,7 @@ function statementss(statement) {
 
 
   //----------------------------------------------------------------------------------------------
-  //    Errors
+  //    Throw an error if it reaches this point!
   //----------------------------------------------------------------------------------------------
 
   else {

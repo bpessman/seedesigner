@@ -21,11 +21,14 @@ function checkForErrors() {
 //----------------------------------------------------------------------------------------------
 
 function resetInformation() {
+  // Removes all the elements from previous runs
   var canvas = document.getElementById("canvas");
   while (canvas.hasChildNodes()) {
     canvas.removeChild(canvas.lastChild);
   }
-
+  
+  parsarLineNumber = 0;
+  objectList = [];
   errorList = [];
   tokenList = [];
   line = 1;

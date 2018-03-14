@@ -12,6 +12,6 @@ var start;
 
 var totalRuns;
 
-var debug = false;
+var debug; // FUTURE: Will be used for debuging features for developement
 
-var textarea = document.getElementById("codeInputArea");
+var textarea;
