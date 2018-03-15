@@ -1,7 +1,7 @@
 totalRuns = 0;
 
 function runProgram() {
-  var startTime = new Date().getTime();
+  startTime = new Date().getTime();
 
   resetInformation();
 
@@ -9,9 +9,9 @@ function runProgram() {
 
   checkForErrors();
 
-  var endTime = new Date().getTime();
-  var time = endTime - startTime;
-  // debug(time);
+  endTime = new Date().getTime();
+  time = endTime - startTime;
+  // debug();
 }
 
 //----------------------------------------------------------------------------------------------
