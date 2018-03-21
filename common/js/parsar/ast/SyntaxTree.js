@@ -179,6 +179,19 @@ function statementText(id, type, x, y, text, red, green, blue) {
   };
 }
 
+//----------------------------------------------------------------------------------------------
+//    Attribute Statement
+//----------------------------------------------------------------------------------------------
+
+function statementAttribute(id, edit, value) {
+  this.id = id;
+  this.edit = edit;
+  this.value = value;
+
+  this.evaluate = function() {
+    var object = document.getElementById(id).setAttribute(edit, value);
+  }
+}
 
 
 //----------------------------------------------------------------------------------------------

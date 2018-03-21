@@ -27,7 +27,7 @@ function statements(statement) {
   //    Object Creation Statement
   //----------------------------------------------------------------------------------------------
 
-  if (has(statement, VAR) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE) && !has(statement, LINE) && !has(statement, TEXT)) {
+  if (has(statement, VAR) && has(statement, EQUAL) && !has(statement, RECTANGLE) && !has(statement, CIRCLE) && !has(statement, LINE) && !has(statement, TEXT) && !has(statement, DOT)) {
     var id = statement[1].lexeme;
     var value = expression(statement.slice(3, statement.length));
     // var value = statement[3].getLiteral();
@@ -40,7 +40,7 @@ function statements(statement) {
   //    Object Set Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, IDENTIFIER) && has(statement, ARROW) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)&& !has(statement, LINE) && !has(statement, TEXT)) {
+  else if (has(statement, IDENTIFIER) && has(statement, EQUAL) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)&& !has(statement, LINE) && !has(statement, TEXT) && !has(statement, DOT)) {
     var id = statement[0].lexeme;
     var value = expression(statement.slice(2, statement.length));
     var type = statement[2].type;
@@ -63,7 +63,7 @@ function statements(statement) {
   //    Rectangle Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE) && has(EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var x = expression(statement.slice(5, 6));
@@ -81,7 +81,7 @@ function statements(statement) {
   //    Circle Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIRCLE)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIRCLE) && has(EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var cx = expression(statement.slice(5, 6));
@@ -98,7 +98,7 @@ function statements(statement) {
   //    Line Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, LINE)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, LINE) && has(EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var x1 = expression(statement.slice(5, 6));
@@ -117,7 +117,7 @@ function statements(statement) {
   //    Text Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEXT)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEXT) && has(EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var x = expression(statement.slice(5, 6));
@@ -128,6 +128,17 @@ function statements(statement) {
     var blue = expression(statement.slice(15, 16));
 
     return new statementText(id, type, x, y, text, red, green, blue);
+  }
+  //----------------------------------------------------------------------------------------------
+  //    Attribute Statement
+  //----------------------------------------------------------------------------------------------
+
+  else if (has(statement, IDENTIFIER) && has(statement, DOT) && has(EQUAL)) {
+    var id = statement[0].lexeme;
+    var edit = statement[2].lexeme;
+    var value = expression(statement.slice(4, statement.length));
+
+    return new statementAttribute(id, edit, value);
   }
 
   //----------------------------------------------------------------------------------------------

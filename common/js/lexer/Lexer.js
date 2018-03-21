@@ -68,14 +68,14 @@ function scanToken() {
       addToken(match('=') ? EQUAL_EQUAL : EQUAL, null);
       break;
     case '<':
+    if (match('<')) {
+      addToken(ARROW, null);
+    } else {
       addToken(match('=') ? LESS_EQUAL : LESS, null);
+    }
       break;
     case '>':
-      if (match('>')) {
-        addToken(ARROW, null);
-      } else {
-        addToken(match('=') ? GREATER_EQUAL : GREATER, null);
-      }
+      addToken(match('=') ? GREATER_EQUAL : GREATER, null);
       break;
     case ' ':
       break;
