@@ -7,3 +7,5 @@ var shapeList; // List of all the shapes
 var exprTokens; // Tokens for a expression
 
 var exprCurrent; // Current Token in the expression
+
+var timeoutT;
