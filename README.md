@@ -5,6 +5,7 @@ Crater is my personal research for a team research project at the University of 
 - [x] Implement a simple for loop that takes in one parameter, the amount of turns to loop for.
 - [ ] Implement a while loop.
 - [ ] Fix code examples to mirror new langauge changes.
+- [ ] Implement array creation.
 - [ ] Figure out method for doing animations.
 
 ## Documentation
