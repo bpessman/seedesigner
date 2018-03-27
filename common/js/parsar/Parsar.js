@@ -9,7 +9,13 @@ function parse(tokens) {
     var statement = [];
 
     var i = 0;
-    if (checkToken(FOR, currentToken, tokens)) {
+    if (checkToken(FUNCTION, currentToken, tokens)) {
+      while(!checkToken(RIGHT_BRACE, currentToken, tokens)) {
+        statement[i] = tokens[currentToken];
+        currentToken++;
+        i++;
+      }
+    } else if (checkToken(FOR, currentToken, tokens)) {
       while(!checkToken(RIGHT_BRACE, currentToken, tokens)) {
         statement[i] = tokens[currentToken];
         currentToken++;
@@ -30,9 +36,22 @@ function parse(tokens) {
 }
 
 function statements(statement) {
+  //----------------------------------------------------------------------------------------------
+  //    Animation Statement
+  //----------------------------------------------------------------------------------------------
 
-  if (has(statement, FOR)) {
+  if (has(statement, FUNCTION) && has(statement, FIXEDUPDATE)) {
+    var delay = statement[3].literal;
+    var loopTokens = statement.slice(6, statement.length);
 
+    return new statementAnimate(delay, loopTokens)
+  }
+
+  //----------------------------------------------------------------------------------------------
+  //    For Loop Statement
+  //----------------------------------------------------------------------------------------------
+
+  else if (has(statement, FOR)) {
     if (has(statement, LEFT_BRACE)) {
       var count = statement[2].literal;
       var loopTokens = statement.slice(5, statement.length + 1);

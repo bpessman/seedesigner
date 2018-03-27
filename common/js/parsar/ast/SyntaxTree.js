@@ -1,4 +1,44 @@
 //----------------------------------------------------------------------------------------------
+//    Animation Statement
+//----------------------------------------------------------------------------------------------
+
+function statementAnimate(delay, loopTokens) {
+  this.delay = delay;
+  this.loopTokens = loopTokens;
+
+  this.evaluate = function() {
+
+      window.setTimeout(animate, delay);
+
+
+    function animate() {
+      console.log(loopTokens);
+      currentToken = 0;
+      while(currentToken < loopTokens.length) {
+        var statement = [];
+
+        var i = 0;
+        while(!checkToken(SEMICOLON, currentToken, loopTokens) || loopTokens.length == 0) {
+          //console.log(loopTokens[currentToken]);
+          statement[i] = loopTokens[currentToken];
+          currentToken++;
+          i++;
+        }
+        statements(statement).evaluate();
+        currentToken++;
+      }
+      window.setTimeout(animate, delay);
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+//    While Loop Statement
+//----------------------------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------------------------
 //    For Loop Statement
 //----------------------------------------------------------------------------------------------
 
@@ -19,7 +59,6 @@ function statementForLoop(count, loopTokens) {
           currentToken++;
           i++;
         }
-        console.log(statement);
         statements(statement).evaluate();
         currentToken++;
       }

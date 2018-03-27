@@ -11,7 +11,7 @@ function runProgram() {
 
   endTime = new Date().getTime();
   time = endTime - startTime;
-  // debug();
+  debug(time);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -55,5 +55,5 @@ function resetInformation() {
 //----------------------------------------------------------------------------------------------
 
 function debug(time) {
-  codeOutputArea.value += "Debug Information->[Run:" + totalRuns + "]" + "[Time:" + time + "ms]\n"
+  console.log("Debug Information->[Run:" + totalRuns + "]" + "[Time:" + time + "ms]\n");
 }
