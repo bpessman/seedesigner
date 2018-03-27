@@ -2,11 +2,17 @@ document.getElementById("codeInputArea").onkeydown = function(e) {
     textarea = document.getElementById("codeInputArea");
 
     if (e.keyCode === 9) { // Tab Key
+      var val = textarea.value;
+      start = textarea.selectionStart;
+      end = textarea.selectionEnd;
 
-        // Inserts a tab inbetween the String (or back/front)
-        textarea.value = textarea.value.substring(0, textarea.selectionStart) + '\t' + textarea.value.substring(textarea.selectionEnd);
+      // set textarea value to: text before caret + tab + text after caret
+      textarea.value = val.substring(0, start) + '\t' + val.substring(end);
 
-        // Resets the caret position
-        textarea.selectionStart = textarea.selectionEnd
+      // put caret at right position again
+      textarea.selectionStart = textarea.selectionEnd = start + 1;
+
+      // prevent the focus lose
+      return false;
     }
 };
