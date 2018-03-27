@@ -9,10 +9,18 @@ function parse(tokens) {
     var statement = [];
 
     var i = 0;
-    while(!checkToken(SEMICOLON, currentToken, tokens)) {
-      statement[i] = tokens[currentToken];
-      currentToken++;
-      i++;
+    if (checkToken(FOR, currentToken, tokens)) {
+      while(!checkToken(RIGHT_BRACE, currentToken, tokens)) {
+        statement[i] = tokens[currentToken];
+        currentToken++;
+        i++;
+      }
+    } else {
+      while(!checkToken(SEMICOLON, currentToken, tokens)) {
+        statement[i] = tokens[currentToken];
+        currentToken++;
+        i++;
+      }
     }
 
     statements(statement).evaluate();
@@ -23,11 +31,24 @@ function parse(tokens) {
 
 function statements(statement) {
 
+  if (has(statement, FOR)) {
+
+    if (has(statement, LEFT_BRACE)) {
+      var count = statement[2].literal;
+      var loopTokens = statement.slice(5, statement.length + 1);
+
+
+      return new statementForLoop(count, loopTokens);
+    } else {
+      errorList.push(new ThrowError(parsarLineNumber, "Parsar", "Missing a brace in for loop!"));
+    }
+  }
+
   //----------------------------------------------------------------------------------------------
   //    Object Creation Statement
   //----------------------------------------------------------------------------------------------
 
-  if (has(statement, VAR) && has(statement, EQUAL) && !has(statement, RECTANGLE) && !has(statement, CIRCLE) && !has(statement, LINE) && !has(statement, TEXT) && !has(statement, DOT)) {
+  else if (has(statement, VAR) && has(statement, EQUAL) && !has(statement, RECTANGLE) && !has(statement, CIRCLE) && !has(statement, LINE) && !has(statement, TEXT) && !has(statement, DOT)) {
     var id = statement[1].lexeme;
     var value = expression(statement.slice(3, statement.length));
     // var value = statement[3].getLiteral();
@@ -43,7 +64,7 @@ function statements(statement) {
   else if (has(statement, IDENTIFIER) && has(statement, EQUAL) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)&& !has(statement, LINE) && !has(statement, TEXT) && !has(statement, DOT)) {
     var id = statement[0].lexeme;
     var value = expression(statement.slice(2, statement.length));
-    var type = statement[2].type;
+    var type = NUMBER; //BUGGGY CODEEEE
 
     return new statementSetObjectValue(id, value, type);
   }

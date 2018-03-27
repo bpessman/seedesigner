@@ -1,4 +1,33 @@
 //----------------------------------------------------------------------------------------------
+//    For Loop Statement
+//----------------------------------------------------------------------------------------------
+
+function statementForLoop(count, loopTokens) {
+  this.count = count;
+  this.loopTokens = loopTokens;
+
+  this.evaluate = function() {
+    for (c = 0; c < count; c++) {
+      currentToken = 0;
+      while(currentToken < loopTokens.length) {
+        var statement = [];
+
+        var i = 0;
+        while(!checkToken(SEMICOLON, currentToken, loopTokens)) {
+          //console.log(loopTokens[currentToken]);
+          statement[i] = loopTokens[currentToken];
+          currentToken++;
+          i++;
+        }
+        console.log(statement);
+        statements(statement).evaluate();
+        currentToken++;
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
 //    Object Creation Statement
 //----------------------------------------------------------------------------------------------
 
@@ -30,13 +59,16 @@ function statementSetObjectValue(id, value, type) {
   this.type = type;
 
   this.evaluate = function() {
+    console.log("Value: " + value);
     if (isAnObject(id)) {
-      if (isAnObject(value)) {
-        value = objectList[getObjectIndex(value)].value;
-      }
 
-      objectList.splice(getObjectIndex(id), 1);
-      objectList.push(createAnObject(id,value,type));
+      // if (isAnObject(value)) {
+      //   value = objectList[getObjectIndex(value)].value;
+      // }
+      //
+      objectList.splice(getObjectIndex(id), 1, createAnObject(id,value,type));
+      //objectList.push(createAnObject(id,value,type));
+      console.log(objectList);
     } else {
       errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
     }
