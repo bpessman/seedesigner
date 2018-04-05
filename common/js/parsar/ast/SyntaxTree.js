@@ -71,6 +71,8 @@ function statementObjectCreation(id, value, type) {
   this.type = type;
 
   this.evaluate = function() {
+    value = value.evaluate();
+
     if (!isAnObject(id)) {
       if (isAnObject(value)) {
         objectList.push(createAnObject(id,objectList[getObjectIndex(value)].value,type));
@@ -93,16 +95,10 @@ function statementSetObjectValue(id, value, type) {
   this.type = type;
 
   this.evaluate = function() {
-    console.log("Value: " + value);
-    if (isAnObject(id)) {
+    value = value.evaluate();
 
-      // if (isAnObject(value)) {
-      //   value = objectList[getObjectIndex(value)].value;
-      // }
-      //
+    if (isAnObject(id)) {
       objectList.splice(getObjectIndex(id), 1, createAnObject(id,value,type));
-      //objectList.push(createAnObject(id,value,type));
-      console.log(objectList);
     } else {
       errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
     }
@@ -117,6 +113,8 @@ function statementPrint(value, type) {
   this.value = value;
 
   this.evaluate = function() {
+    value = value.evaluate();
+
     codeOutputArea.value += value + "\n";
   };
 }
@@ -137,6 +135,14 @@ function statementRectangle(id, type, x, y, width, height, red, green, blue) {
   this.blue = blue;
 
   this.evaluate = function() {
+    x = x.evaluate();
+    y = y.evaluate();
+    width = width.evaluate();
+    height = height.evaluate();
+    red = red.evaluate();
+    green = green.evaluate();
+    blue = blue.evaluate();
+
     var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
     shapeList.push(id);
     rect.setAttribute("id", id);
@@ -164,6 +170,13 @@ function statementCircle(id, type, cx, cy, radius, red, green, blue) {
   this.blue = blue;
 
   this.evaluate = function() {
+    cx = cx.evaluate();
+    cy = cy.evaluate();
+    radius = radius.evaluate();
+    red = red.evaluate();
+    green = green.evaluate();
+    blue = blue.evaluate();
+
     var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
     shapeList.push(id);
     circle.setAttribute("id", id);
@@ -197,6 +210,15 @@ function statementLine(id, type, x1, y1, x2, y2, red, green, blue, strokeWidth) 
   this.strokeWidth = strokeWidth;
 
   this.evaluate = function() {
+    x1 = x1.evaluate();
+    y1 = y1.evaluate();
+    x2 = x2.evaluate();
+    y2 = y2.evaluate();
+    red = red.evaluate();
+    green = green.evaluate();
+    blue = blue.evaluate();
+    strokeWidth = strokeWidth.evaluate();
+
     var line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
     shapeList.push(id);
     line.setAttribute("id", id);
@@ -234,6 +256,13 @@ function statementText(id, type, x, y, text, red, green, blue) {
   this.blue = blue;
 
   this.evaluate = function() {
+    x = x.evaluate();
+    y = y.evaluate();
+    text = text.evaluate();
+    red = red.evaluate();
+    green = green.evaluate();
+    blue = blue.evaluate();
+
     var textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
     shapeList.push(id);
     textElement.setAttribute("id", id);
@@ -255,6 +284,8 @@ function statementAttribute(id, edit, value) {
   this.value = value;
 
   this.evaluate = function() {
+    value = value.evaluate();
+
     var object = document.getElementById(id).setAttribute(edit, value);
   }
 }
