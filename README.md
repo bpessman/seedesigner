@@ -2,8 +2,8 @@
 Crater is my personal research for a team research project at the University of Wisconsin-Eau Claire. The goal of this project was to create a simple programming language which could allow for SVG animation. As a team of four, we all made separate languages and interpreters in order to better understand programming languages and to enhance our JavaScript skills.
 
 ## Weekly To Do List (Updated Every Friday)
-[ ] Fix the type setting for variables (Right now it sets everything to a number!).
-[ ] Figure out Trig Functions.
+-[] Fix the type setting for variables (Right now it sets everything to a number!).
+-[] Figure out Trig Functions.
 
 ## Documentation
 Here are some simple commands for basic shape drawing,
