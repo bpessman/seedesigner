@@ -8,7 +8,7 @@ function run(source) {
 
   totalRuns++;
   tokenList.push(new Token(EOF, "", line, null));
-  console.log(tokenList);
+  
   return tokenList;
 }
 

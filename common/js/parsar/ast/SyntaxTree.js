@@ -109,7 +109,7 @@ function statementSetObjectValue(id, value, type) {
 //    Print Statement
 //----------------------------------------------------------------------------------------------
 
-function statementPrint(value, type) {
+function statementPrint(value) {
   this.value = value;
 
   this.evaluate = function() {
@@ -293,7 +293,7 @@ function statementAttribute(id, edit, value) {
 //----------------------------------------------------------------------------------------------
 //    Trigonometric Statement
 //----------------------------------------------------------------------------------------------
- 
+
 function statementTrigonometric(id, type, value) {
   this.id = id;
   this.type = type;
@@ -382,7 +382,7 @@ function expressionAtom() {
     } else if (match_e(IDENTIFIER)) {
       var index = getObjectIndex(previous_e().lexeme);
       if (objectList[index].type == STRING) {
-        return objectList[index].value.slice(1, objectList[index].value.length-1);
+        return objectList[index].value.slice(0, objectList[index].value.length);
       } else if (objectList[index].type == NUMBER) {
         return parseInt(objectList[index].value);
       }

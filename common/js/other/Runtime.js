@@ -11,7 +11,7 @@ function runProgram() {
 
   endTime = new Date().getTime();
   time = endTime - startTime;
-  debug(time);
+  //debug(time);
 }
 
 //----------------------------------------------------------------------------------------------

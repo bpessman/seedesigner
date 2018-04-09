@@ -12,8 +12,7 @@ function string() {
     return;
   }
   nextCharacter();
-
-
   var value = source.substring(start + 1, current - 1);
+
   addToken(STRING, value);
 }
