@@ -60,6 +60,9 @@ var TRUE = "TRUE";
 var VAR = "VAR";
 var WHILE = "WHILE";
 var NEW = "NEW";
+var SIN = "SIN";
+var COS = "COS";
+var TAN = "TAN";
 
 //----------------------------------------------------------------------------------------------
 //    SVG-Specific Keywords
@@ -111,6 +114,9 @@ keywordsList.set("polyline", POLYLINE);
 keywordsList.set("text", TEXT);
 keywordsList.set("animate", ANIMATE);
 keywordsList.set("FixedUpdate", FIXEDUPDATE)
+keywordsList.set("sin", SIN);
+keywordsList.set("cos", COS);
+keywordsList.set("tan", TAN);
 
 //----------------------------------------------------------------------------------------------
 //    Special

@@ -290,6 +290,19 @@ function statementAttribute(id, edit, value) {
   }
 }
 
+//----------------------------------------------------------------------------------------------
+//    Trigonometric Statement
+//----------------------------------------------------------------------------------------------
+ 
+function statementTrigonometric(id, type, value) {
+  this.id = id;
+  this.type = type;
+  this.value = value;
+
+  this.evaluate = function() {
+
+  }
+}
 
 //----------------------------------------------------------------------------------------------
 //    'Expr' Helper Methods
@@ -432,4 +445,26 @@ function mod(left, right) {
   this.right = right;
 
   return left % right;
+}
+
+//----------------------------------------------------------------------------------------------
+//    Trigonometric Expressions
+//----------------------------------------------------------------------------------------------
+
+function sin(value) {
+  this.value = value;
+
+  return Math.sin(value);
+}
+
+function cos(value) {
+  this.value = value;
+
+  return Math.cos(value);
+}
+
+function tan(value) {
+  this.value = value;
+
+  return Math.tan(value);
 }
