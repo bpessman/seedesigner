@@ -4,7 +4,6 @@ function parse(tokens) {
   //----------------------------------------------------------------------------------------------
   //    Splits Tokens into Statements
   //----------------------------------------------------------------------------------------------
-
   while(!checkToken(EOF, currentToken, tokens)) {
     var statement = [];
 
@@ -34,6 +33,7 @@ function parse(tokens) {
     parsarLineNumber++;
   }
 
+
   for (i = 0; i < statementList.length; i++) {
     statementList[i].evaluate();
   }
@@ -49,6 +49,28 @@ function statements(statement) {
     var loopTokens = statement.slice(6, statement.length);
 
     return new statementAnimate(delay, loopTokens)
+  }
+
+  //----------------------------------------------------------------------------------------------
+  //    Plus Unary Statemenet
+  //----------------------------------------------------------------------------------------------
+
+  else if (has(statement, PLUS_PLUS) && has(statement, IDENTIFIER)) {
+    var id = statement[0].lexeme;
+    var operator = statement[1].type;
+
+    return new statementUnaryOperator(id, operator);
+  }
+
+  //----------------------------------------------------------------------------------------------
+  //    Minus Unary Statemenet
+  //----------------------------------------------------------------------------------------------
+
+  else if (has(statement, MINUS_MINUS) && has(statement, IDENTIFIER)) {
+    var id = statement[0].lexeme;
+    var operator = statement[1].type;
+
+    return new statementUnaryOperator(id, operator);
   }
 
   //----------------------------------------------------------------------------------------------

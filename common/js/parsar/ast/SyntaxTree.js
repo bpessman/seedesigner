@@ -2,6 +2,39 @@
 //    Animation Statement
 //----------------------------------------------------------------------------------------------
 
+function statementUnaryOperator(id, operator) {
+  this.id = id;
+  this.operator = operator;
+
+  this.evaluate = function() {
+    var value;
+
+    if (operator == PLUS_PLUS) {
+      var tokenss = [];
+      tokenss.push(new Token(IDENTIFIER, id, null, null));
+      tokenss.push(new Token(PLUS, "+", null, null));
+      tokenss.push(new Token(NUMBER, 1, null, 1));
+      value = expr(tokenss);
+    } else if (operator == MINUS_MINUS) {
+      var tokenss = [];
+      tokenss.push(new Token(IDENTIFIER, id, null, null));
+      tokenss.push(new Token(MINUS, "-", null, null));
+      tokenss.push(new Token(NUMBER, 1, null, 1));
+      value = expr(tokenss);
+    }
+
+    if (isAnObject(id)) {
+      objectList.splice(getObjectIndex(id), 1, createAnObject(id,value,NUMBER));
+    } else {
+      errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+//    Animation Statement
+//----------------------------------------------------------------------------------------------
+
 function statementAnimate(delay, loopTokens) {
   this.delay = delay;
   this.loopTokens = loopTokens;
