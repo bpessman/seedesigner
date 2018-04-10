@@ -1,23 +1,40 @@
 ## Documentation
-Here are some simple commands for basic shape drawing,
+Here you will find some basic documentation on how to use this programming language.
+
+#### Drawing Simple Shapes
 ```
-var box = rectangle (x, y, width, height, red, green, blue);
-var circ = circle (cx, cy, radius, red, green, blue);
-var line = line (x1, y1, x2, y2, red, green, blue, stroke-width);
+var rectangleExample = rectangle (x, y, width, height, red, green, blue);
+var circleExample = circle (cx, cy, radius, red, green, blue);
+var lineExample = line (x1, y1, x2, y2, red, green, blue, stroke-width);
 ```
 
-Crater even offers printing out statements and values held in objects,
+#### Animation
+In order to animate within Crater, you must used whats called a FixedUpdate function. This will allow you to animate on a fixed interval for set amount of iterations.
 ```
-var bird = "Bird";
-var cat = "Cat";
-print cat + " " + bird;
+function FixedUpdate(delay, iterations) {
+  // Statements
+}
 ```
-The above statement would print as such,
+It will basically loop the FixedUpdate function every "delay" (which is in ms) for however many iterations.
+
+#### Variables
+All variable types are stored as "vars". The interpreter will decide what it is.
 ```
-Bird Cat
+var string = "Hello, World!" // Example of a String
+var number = 1234 // Example of a Number
+```
+Also note that shapes are stored in variables as well. Look at "Drawing Simple Shapes" for examples.
+
+#### Loops
+The only loop implemented so far is the for loop. I do plan on implementing a while loop.
+```
+for (iterations) {
+  // Statements
+}
 ```
 
-Here is a more advance example of a drawing,
+#### Examples from the language
+Example 1: Robot Man (No Animation)
 ```
 var r = rectangle (0,0,600,450,255,255,255);
 
