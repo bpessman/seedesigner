@@ -6,6 +6,6 @@ Crater is my personal research for a team research project at the University of 
 - [ ] Figure out Trig Functions.
 
 ## Known Bugs
-#### Issues that completly break the Program
+#### Issues that completly break the program
 - For loops within a FixedUpdate function
 - For loops within a for loop
