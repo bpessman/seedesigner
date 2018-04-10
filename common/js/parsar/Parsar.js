@@ -46,9 +46,10 @@ function statements(statement) {
 
   if (has(statement, FUNCTION) && has(statement, FIXEDUPDATE)) {
     var delay = statement[3].literal;
-    var loopTokens = statement.slice(6, statement.length);
+    var iterations = statement[5].literal;
+    var loopTokens = statement.slice(8, statement.length);
 
-    return new statementAnimate(delay, loopTokens)
+    return new statementAnimate(delay, iterations, loopTokens)
   }
 
   //----------------------------------------------------------------------------------------------

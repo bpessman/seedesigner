@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------------------
-//    Animation Statement
+//    Unary Operator Statement
 //----------------------------------------------------------------------------------------------
 
 function statementUnaryOperator(id, operator) {
@@ -35,12 +35,14 @@ function statementUnaryOperator(id, operator) {
 //    Animation Statement
 //----------------------------------------------------------------------------------------------
 
-function statementAnimate(delay, loopTokens) {
+function statementAnimate(delay, iterations, loopTokens) {
   this.delay = delay;
+  this.iterations = iterations;
   this.loopTokens = loopTokens;
 
   this.evaluate = function() {
     timeoutT = window.setTimeout(animate, delay);
+    var counter = 0;
 
     function animate() {
       currentToken = 0;
@@ -55,7 +57,11 @@ function statementAnimate(delay, loopTokens) {
           statements(statement).evaluate();
           currentToken++;
         }
-      timeoutT = window.setTimeout(animate, delay);
+
+      if (counter < iterations - 1) {
+        counter++;
+        timeoutT = window.setTimeout(animate, delay);
+      }
     }
   }
 }
