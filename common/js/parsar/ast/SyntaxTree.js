@@ -5,29 +5,29 @@
 function statementUnaryOperator(id, operator) {
   this.id = id;
   this.operator = operator;
+}
 
-  this.evaluate = function() {
-    var value;
+statementUnaryOperator.prototype.evaluate = function() {
+  var operator = this.operator;
+  var id = this.id;
 
-    if (operator == PLUS_PLUS) {
-      var tokenss = [];
-      tokenss.push(new Token(IDENTIFIER, id, null, null));
-      tokenss.push(new Token(PLUS, "+", null, null));
-      tokenss.push(new Token(NUMBER, 1, null, 1));
-      value = expr(tokenss);
-    } else if (operator == MINUS_MINUS) {
-      var tokenss = [];
-      tokenss.push(new Token(IDENTIFIER, id, null, null));
-      tokenss.push(new Token(MINUS, "-", null, null));
-      tokenss.push(new Token(NUMBER, 1, null, 1));
-      value = expr(tokenss);
-    }
+  var createdTokens = [];
+  if (operator == PLUS_PLUS) {
+    createdTokens.push(new Token(IDENTIFIER, id, null, null));
+    createdTokens.push(new Token(PLUS, "+", null, null));
+    createdTokens.push(new Token(NUMBER, 1, null, 1));
+  } else {
+    createdTokens.push(new Token(IDENTIFIER, id, null, null));
+    createdTokens.push(new Token(MINUS, "-", null, null));
+    createdTokens.push(new Token(NUMBER, 1, null, 1));
+  }
 
-    if (isAnObject(id)) {
-      objectList.splice(getObjectIndex(id), 1, createAnObject(id,value,NUMBER));
-    } else {
-      errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
-    }
+  var value = expr(createdTokens);
+
+  if (isAnObject(id)) {
+    objectList.splice(getObjectIndex(id), 1, createAnObject(id, value, NUMBER));
+  } else {
+    errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
   }
 }
 
@@ -39,29 +39,33 @@ function statementAnimate(delay, iterations, loopTokens) {
   this.delay = delay;
   this.iterations = iterations;
   this.loopTokens = loopTokens;
+}
 
-  this.evaluate = function() {
-    timeoutT = window.setTimeout(animate, delay);
-    var counter = 0;
+statementAnimate.prototype.evaluate = function() {
+  var delay = this.delay;
+  var iterations = this.iterations;
+  var loopTokens = this.loopTokens;
 
-    function animate() {
-      currentToken = 0;
-      while(currentToken < loopTokens.length) {
-        var statement = [];
-          var i = 0;
-          while(!checkToken(SEMICOLON, currentToken, loopTokens) || loopTokens.length == 0) {
-            statement[i] = loopTokens[currentToken];
-            currentToken++;
-            i++;
-          }
-          statements(statement).evaluate();
+  timeoutT = window.setTimeout(animate, delay);
+
+  var counter = 0;
+  function animate() {
+    var currentToken = 0;
+    while(currentToken < loopTokens.length) {
+      var statement = [];
+        var i = 0;
+        while(!checkToken(SEMICOLON, currentToken, loopTokens) || loopTokens.length == 0) {
+          statement[i] = loopTokens[currentToken];
           currentToken++;
+          i++;
         }
-
-      if (counter < iterations - 1) {
-        counter++;
-        timeoutT = window.setTimeout(animate, delay);
+        statements(statement).evaluate();
+        currentToken++;
       }
+
+    if (counter < iterations - 1) {
+      counter++;
+      timeoutT = window.setTimeout(animate, delay);
     }
   }
 }
@@ -73,29 +77,38 @@ function statementAnimate(delay, iterations, loopTokens) {
 
 
 //----------------------------------------------------------------------------------------------
+//    If Statement
+//----------------------------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------------------------
 //    For Loop Statement
 //----------------------------------------------------------------------------------------------
 
 function statementForLoop(count, loopTokens) {
   this.count = count;
   this.loopTokens = loopTokens;
+}
 
-  this.evaluate = function() {
-    for (c = 0; c < count; c++) {
-      currentToken = 0;
-      while(currentToken < loopTokens.length) {
-        var statement = [];
+statementForLoop.prototype.evaluate = function() {
+  var count = this.count;
+  var loopTokens = this.loopTokens;
 
-        var i = 0;
-        while(!checkToken(SEMICOLON, currentToken, loopTokens)) {
-          //console.log(loopTokens[currentToken]);
-          statement[i] = loopTokens[currentToken];
-          currentToken++;
-          i++;
-        }
-        statements(statement).evaluate();
+  for (c = 0; c < count; c++) {
+    currentToken = 0;
+    while(currentToken < loopTokens.length) {
+      var statement = [];
+
+      var i = 0;
+      while(!checkToken(SEMICOLON, currentToken, loopTokens)) {
+        statement[i] = loopTokens[currentToken];
         currentToken++;
+        i++;
       }
+
+      currentToken++;
+      statements(statement).evaluate();
     }
   }
 }
@@ -108,20 +121,24 @@ function statementObjectCreation(id, value, type) {
   this.id = id;
   this.value = value;
   this.type = type;
+}
 
-  this.evaluate = function() {
-    value = value.evaluate();
+statementObjectCreation.prototype.evaluate = function() {
+  var id = this.id;
+  var value = this.value;
+  var type = this.type;
 
-    if (!isAnObject(id)) {
-      if (isAnObject(value)) {
-        objectList.push(createAnObject(id,objectList[getObjectIndex(value)].value,type));
-      } else {
-        objectList.push(createAnObject(id,value,type));
-      }
+  value = value.evaluate();
+
+  if (!isAnObject(id)) {
+    if (isAnObject(value)) {
+      objectList.push(createAnObject(id, objectList[getObjectIndex(value)].value, type));
     } else {
-      errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have already created a '" + id + "' object."));
+      objectList.push(createAnObject(id,value,type));
     }
-  };
+  } else {
+    errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have already created a '" + id + "' object."));
+  }
 }
 
 //----------------------------------------------------------------------------------------------
@@ -132,16 +149,20 @@ function statementSetObjectValue(id, value, type) {
   this.id = id;
   this.value = value;
   this.type = type;
+}
 
-  this.evaluate = function() {
-    value = value.evaluate();
+statementSetObjectValue.prototype.evaluate = function() {
+  var id = this.id;
+  var value = this.value;
+  var type = this.type;
 
-    if (isAnObject(id)) {
-      objectList.splice(getObjectIndex(id), 1, createAnObject(id,value,type));
-    } else {
-      errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
-    }
-  };
+  value = value.evaluate();
+
+  if (isAnObject(id)) {
+    objectList.splice(getObjectIndex(id), 1, createAnObject(id, value, type));
+  } else {
+    errorList.push(new ThrowError(parsarLineNumber, "Parsar", "You have not created a '" + id + "' object."));
+  }
 }
 
 //----------------------------------------------------------------------------------------------
@@ -150,12 +171,14 @@ function statementSetObjectValue(id, value, type) {
 
 function statementPrint(value) {
   this.value = value;
+}
 
-  this.evaluate = function() {
-    value = value.evaluate();
+statementPrint.prototype.evaluate = function() {
+  var value = this.value;
 
-    codeOutputArea.value += value + "\n";
-  };
+  value = value.evaluate();
+
+  codeOutputArea.value += value + "\n";
 }
 
 //----------------------------------------------------------------------------------------------
@@ -172,26 +195,36 @@ function statementRectangle(id, type, x, y, width, height, red, green, blue) {
   this.red = red;
   this.green = green;
   this.blue = blue;
+}
 
-  this.evaluate = function() {
-    x = x.evaluate();
-    y = y.evaluate();
-    width = width.evaluate();
-    height = height.evaluate();
-    red = red.evaluate();
-    green = green.evaluate();
-    blue = blue.evaluate();
+statementRectangle.prototype.evaluate = function() {
+  var id = this.id;
+  var type = this.type;
+  var x = this.x;
+  var y = this.y;
+  var width = this.width;
+  var height = this.height;
+  var red = this.red;
+  var green = this.green;
+  var blue = this.blue;
 
-    var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
-    shapeList.push(id);
-    rect.setAttribute("id", id);
-    rect.setAttribute("x", x);
-    rect.setAttribute("y", y);
-    rect.setAttribute("width", width);
-    rect.setAttribute("height", height);
-    rect.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
-    document.getElementById("canvas").appendChild(rect);
-  };
+  x = x.evaluate();
+  y = y.evaluate();
+  width = width.evaluate();
+  height = height.evaluate();
+  red = red.evaluate();
+  green = green.evaluate();
+  blue = blue.evaluate();
+
+  var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+  shapeList.push(id);
+  rect.setAttribute("id", id);
+  rect.setAttribute("x", x);
+  rect.setAttribute("y", y);
+  rect.setAttribute("width", width);
+  rect.setAttribute("height", height);
+  rect.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
+  document.getElementById("canvas").appendChild(rect);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -207,24 +240,33 @@ function statementCircle(id, type, cx, cy, radius, red, green, blue) {
   this.red = red;
   this.green = green;
   this.blue = blue;
+}
 
-  this.evaluate = function() {
-    cx = cx.evaluate();
-    cy = cy.evaluate();
-    radius = radius.evaluate();
-    red = red.evaluate();
-    green = green.evaluate();
-    blue = blue.evaluate();
+statementCircle.prototype.evaluate = function() {
+  var id = this.id;
+  var type = this.type;
+  var cx = this.cx;
+  var cy = this.cy;
+  var radius = this.radius;
+  var red = this.red;
+  var green = this.green;
+  var blue = this.blue;
 
-    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
-    shapeList.push(id);
-    circle.setAttribute("id", id);
-    circle.setAttribute("cx", cx);
-    circle.setAttribute("cy", cy);
-    circle.setAttribute("r", radius);
-    circle.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
-    document.getElementById("canvas").appendChild(circle);
-  };
+  cx = cx.evaluate();
+  cy = cy.evaluate();
+  radius = radius.evaluate();
+  red = red.evaluate();
+  green = green.evaluate();
+  blue = blue.evaluate();
+
+  var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+  shapeList.push(id);
+  circle.setAttribute("id", id);
+  circle.setAttribute("cx", cx);
+  circle.setAttribute("cy", cy);
+  circle.setAttribute("r", radius);
+  circle.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
+  document.getElementById("canvas").appendChild(circle);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -247,27 +289,37 @@ function statementLine(id, type, x1, y1, x2, y2, red, green, blue, strokeWidth) 
   this.green = green;
   this.blue = blue;
   this.strokeWidth = strokeWidth;
+}
 
-  this.evaluate = function() {
-    x1 = x1.evaluate();
-    y1 = y1.evaluate();
-    x2 = x2.evaluate();
-    y2 = y2.evaluate();
-    red = red.evaluate();
-    green = green.evaluate();
-    blue = blue.evaluate();
-    strokeWidth = strokeWidth.evaluate();
+statementLine.prototype.evaluate = function() {
+  var id = this.id;
+  var type = this.type;
+  var x1 = this.x1;
+  var y1 = this.y1;
+  var x2 = this.x2;
+  var y2 = this.y2;
+  var red = this.red;
+  var green = this.green;
+  var blue = this.blue;
 
-    var line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-    shapeList.push(id);
-    line.setAttribute("id", id);
-    line.setAttribute("x1", x1);
-    line.setAttribute("y1", y1);
-    line.setAttribute("x2", x2);
-    line.setAttribute("y2", y2);
-    line.setAttribute("style", "stroke:rgb(" + red + "," + green + "," + blue + ");stroke-width:" + strokeWidth);
-    document.getElementById("canvas").appendChild(line);
-  };
+  x1 = x1.evaluate();
+  y1 = y1.evaluate();
+  x2 = x2.evaluate();
+  y2 = y2.evaluate();
+  red = red.evaluate();
+  green = green.evaluate();
+  blue = blue.evaluate();
+  strokeWidth = strokeWidth.evaluate();
+
+  var line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+  shapeList.push(id);
+  line.setAttribute("id", id);
+  line.setAttribute("x1", x1);
+  line.setAttribute("y1", y1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y2", y2);
+  line.setAttribute("style", "stroke:rgb(" + red + "," + green + "," + blue + ");stroke-width:" + strokeWidth);
+  document.getElementById("canvas").appendChild(line);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -293,24 +345,33 @@ function statementText(id, type, x, y, text, red, green, blue) {
   this.red = red;
   this.green = green;
   this.blue = blue;
+}
 
-  this.evaluate = function() {
-    x = x.evaluate();
-    y = y.evaluate();
-    text = text.evaluate();
-    red = red.evaluate();
-    green = green.evaluate();
-    blue = blue.evaluate();
+statementText.prototype.evaluate = function() {
+  var id = this.id;
+  var type = this.type;
+  var x = this.x;
+  var y = this.y;
+  var text = this.text;
+  var red = this.red;
+  var green = this.green;
+  var blue = this.blue;
 
-    var textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
-    shapeList.push(id);
-    textElement.setAttribute("id", id);
-    textElement.setAttribute("x", x);
-    textElement.setAttribute("y", y);
-    textElement.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
-    textElement.innerHTML = text;
-    document.getElementById("canvas").appendChild(textElement);
-  };
+  x = x.evaluate();
+  y = y.evaluate();
+  text = text.evaluate();
+  red = red.evaluate();
+  green = green.evaluate();
+  blue = blue.evaluate();
+
+  var textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+  shapeList.push(id);
+  textElement.setAttribute("id", id);
+  textElement.setAttribute("x", x);
+  textElement.setAttribute("y", y);
+  textElement.setAttribute("fill", "rgb(" + red + "," + green + "," + blue + ")");
+  textElement.innerHTML = text;
+  document.getElementById("canvas").appendChild(textElement);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -321,12 +382,14 @@ function statementAttribute(id, edit, value) {
   this.id = id;
   this.edit = edit;
   this.value = value;
+}
 
-  this.evaluate = function() {
-    value = value.evaluate();
+statementAttribute.prototype.evaluate = function() {
+  var value = this.value;
 
-    var object = document.getElementById(id).setAttribute(edit, value);
-  }
+  value = value.evaluate();
+
+  var object = document.getElementById(id).setAttribute(edit, value);
 }
 
 //----------------------------------------------------------------------------------------------
@@ -337,10 +400,12 @@ function statementTrigonometric(id, type, value) {
   this.id = id;
   this.type = type;
   this.value = value;
+}
 
-  this.evaluate = function() {
-
-  }
+statementTrigonometric.prototype.evaluate = function() {
+  var id = this.id;
+  var type = this.type;
+  var value = this.value;
 }
 
 //----------------------------------------------------------------------------------------------
@@ -432,7 +497,7 @@ function expressionAtom() {
 }
 
 //----------------------------------------------------------------------------------------------
-//    Addition Expression
+//    Basic Operation Expressions
 //----------------------------------------------------------------------------------------------
 
 function add(left, right) {
@@ -442,10 +507,6 @@ function add(left, right) {
   return left + right;
 }
 
-//----------------------------------------------------------------------------------------------
-//    Subtraction Expression
-//----------------------------------------------------------------------------------------------
-
 function subtract(left, right) {
   this.left = left;
   this.right = right;
@@ -453,20 +514,12 @@ function subtract(left, right) {
   return left - right;
 }
 
-//----------------------------------------------------------------------------------------------
-//    Division Expression
-//----------------------------------------------------------------------------------------------
-
 function divide(left, right) {
   this.left = left;
   this.right = right;
 
   return left / right;
 }
-
-//----------------------------------------------------------------------------------------------
-//    Multiplication Expression
-//----------------------------------------------------------------------------------------------
 
 function multiply(left, right) {
   this.left = left;
@@ -476,7 +529,7 @@ function multiply(left, right) {
 }
 
 //----------------------------------------------------------------------------------------------
-//    Mod Expression
+//    Special Operation Expression
 //----------------------------------------------------------------------------------------------
 
 function mod(left, right) {
@@ -485,10 +538,6 @@ function mod(left, right) {
 
   return left % right;
 }
-
-//----------------------------------------------------------------------------------------------
-//    Trigonometric Expressions
-//----------------------------------------------------------------------------------------------
 
 function sin(value) {
   this.value = value;

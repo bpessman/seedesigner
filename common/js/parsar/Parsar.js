@@ -127,7 +127,7 @@ function statements(statement) {
   //    Rectangle Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE) && has(EQUAL)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, RECTANGLE) && has(statement, EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var x = new expression(statement.slice(5, 6));
@@ -145,7 +145,7 @@ function statements(statement) {
   //    Circle Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIRCLE) && has(EQUAL)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, CIRCLE) && has(statement, EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var cx = new expression(statement.slice(5, 6));
@@ -162,7 +162,7 @@ function statements(statement) {
   //    Line Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, LINE) && has(EQUAL)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, LINE) && has(statement, EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var x1 = new expression(statement.slice(5, 6));
@@ -181,7 +181,7 @@ function statements(statement) {
   //    Text Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEXT) && has(EQUAL)) {
+  else if (has(statement, VAR) && has(statement, IDENTIFIER) && has(statement, TEXT) && has(statement, EQUAL)) {
     var id = statement[1].lexeme;
     var type = statement[3].type;
     var x = new expression(statement.slice(5, 6));
@@ -197,7 +197,7 @@ function statements(statement) {
   //    Attribute Statement
   //----------------------------------------------------------------------------------------------
 
-  else if (has(statement, IDENTIFIER) && has(statement, DOT) && has(EQUAL)) {
+  else if (has(statement, IDENTIFIER) && has(statement, DOT) && has(statement, EQUAL)) {
     var id = statement[0].lexeme;
     var edit = statement[2].lexeme;
     var value = new expression(statement.slice(4, statement.length));
@@ -219,12 +219,6 @@ function statements(statement) {
 
   //----------------------------------------------------------------------------------------------
   //    Polyline Statement
-  //----------------------------------------------------------------------------------------------
-
-
-
-  //----------------------------------------------------------------------------------------------
-  //    FixedUpdate Function
   //----------------------------------------------------------------------------------------------
 
 
