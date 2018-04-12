@@ -9,3 +9,6 @@ Crater is my personal research for a team research project at the University of 
 #### Issues that completely break the program
 - For loops within a FixedUpdate function
 - For loops within a for loop
+
+#### Issues that don't completely break the program
+- Weird issues with initializing variables within for loops and FixedUpdate functions
