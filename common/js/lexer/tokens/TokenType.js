@@ -63,6 +63,7 @@ var NEW = "NEW";
 var SIN = "SIN";
 var COS = "COS";
 var TAN = "TAN";
+var RANDOM = "RANDOM";
 
 //----------------------------------------------------------------------------------------------
 //    SVG-Specific Keywords
@@ -117,6 +118,7 @@ keywordsList.set("FixedUpdate", FIXEDUPDATE)
 keywordsList.set("sin", SIN);
 keywordsList.set("cos", COS);
 keywordsList.set("tan", TAN);
+keywordsList.set("rand", RANDOM);
 
 //----------------------------------------------------------------------------------------------
 //    Special

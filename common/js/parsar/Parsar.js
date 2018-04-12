@@ -96,7 +96,8 @@ function statements(statement) {
   else if (has(statement, VAR) && has(statement, EQUAL) && !has(statement, RECTANGLE) && !has(statement, CIRCLE) && !has(statement, LINE) && !has(statement, TEXT) && !has(statement, DOT)) {
     var id = statement[1].lexeme;
     var value = new expression(statement.slice(3, statement.length));
-    var type = statement[3].type;
+    //var type = statement[3].type;
+    var type = NUMBER;
 
     return new statementObjectCreation(id, value, type);
   }
@@ -108,7 +109,8 @@ function statements(statement) {
   else if (has(statement, IDENTIFIER) && has(statement, EQUAL) && !has(statement, RECTANGLE) && !has(statement, CIRCLE)&& !has(statement, LINE) && !has(statement, TEXT) && !has(statement, DOT)) {
     var id = statement[0].lexeme;
     var value = new expression(statement.slice(2, statement.length));
-    var type = statement[2].type;
+    //var type = statement[2].type;
+    var type = NUMBER;
 
     return new statementSetObjectValue(id, value, type);
   }
@@ -242,4 +244,6 @@ function statements(statement) {
       return expr(tokens);
     }
   }
+
+
 }

@@ -46,9 +46,10 @@ statementAnimate.prototype.evaluate = function() {
   var iterations = this.iterations;
   var loopTokens = this.loopTokens;
 
+  var counter = 0;
   timeoutT = window.setTimeout(animate, delay);
 
-  var counter = 0;
+
   function animate() {
     var currentToken = 0;
     while(currentToken < loopTokens.length) {
@@ -129,6 +130,9 @@ statementObjectCreation.prototype.evaluate = function() {
   var type = this.type;
 
   value = value.evaluate();
+  if (type == RANDOM) {
+    type = NUMBER;
+  }
 
   if (!isAnObject(id)) {
     if (isAnObject(value)) {
@@ -155,8 +159,11 @@ statementSetObjectValue.prototype.evaluate = function() {
   var id = this.id;
   var value = this.value;
   var type = this.type;
-
+  console.log(value);
   value = value.evaluate();
+  if (type == RANDOM) {
+    type = NUMBER;
+  }
 
   if (isAnObject(id)) {
     objectList.splice(getObjectIndex(id), 1, createAnObject(id, value, type));
@@ -386,6 +393,8 @@ function statementAttribute(id, edit, value) {
 
 statementAttribute.prototype.evaluate = function() {
   var value = this.value;
+  var edit = this.edit;
+  var id = this.id;
 
   value = value.evaluate();
 
@@ -480,6 +489,7 @@ function expressionMultiplication() {
 }
 
 function expressionAtom() {
+
   try {
     if (match_e(NUMBER, STRING)) {
       return previous_e().literal;
@@ -490,6 +500,27 @@ function expressionAtom() {
       } else if (objectList[index].type == NUMBER) {
         return parseInt(objectList[index].value);
       }
+    } else if (match_e(SIN)){
+      var right = expressionAtom();
+      var left = sin(right);
+      return left;
+    } else if (match_e(COS)){
+      var right = expressionAtom();
+      var left = cos(right);
+      return left;
+    } else if (match_e(TAN)){
+      var right = expressionAtom();
+      var left = tan(right);
+      return left;
+    } else if (match_e(SIN)){
+      var right = expressionAtom();
+      var left = sin(right);
+      return left;
+    } else if (match_e(RANDOM)){
+      var right = expressionAtom();
+      var left = random(right);
+      console.log("OK");
+      return left;
     }
   } catch (error) {
     errorList.push(new ThrowError(parsarLineNumber, "Parsar", error));
@@ -542,17 +573,23 @@ function mod(left, right) {
 function sin(value) {
   this.value = value;
 
-  return Math.sin(value);
+  return Math.sin(value/180*Math.PI);
 }
 
 function cos(value) {
   this.value = value;
 
-  return Math.cos(value);
+  return Math.cos(value/180*Math.PI);
 }
 
 function tan(value) {
   this.value = value;
 
-  return Math.tan(value);
+  return Math.tan(value/180*Math.PI);
+}
+
+function random(max) {
+  this.max = max;
+
+  return Math.floor(Math.random() * max);
 }
