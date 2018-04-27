@@ -10,13 +10,14 @@ function clearCodeClicked() {
   document.getElementById("codeInputArea").value = "";
 }
 
-function playClicked() {
-  
+function downloadClicked() {
+  console.log("Clicked");
+  gif.render();
+  console.log("Clicked");
 }
 
-function pauseClicked() {
 
-}
+
 
 
 document.getElementById('codeInputArea').addEventListener('blur', e => {

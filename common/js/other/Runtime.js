@@ -49,6 +49,9 @@ function resetInformation() {
   // Other Global Variables
   errorList = [];
 
+
+
+
   clearTimeout(timeoutT);
 }
 

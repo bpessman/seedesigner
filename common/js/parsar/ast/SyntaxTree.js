@@ -35,22 +35,23 @@ statementUnaryOperator.prototype.evaluate = function() {
 //    Animation Statement
 //----------------------------------------------------------------------------------------------
 
-function statementAnimate(delay, iterations, loopTokens) {
-  this.delay = delay;
+function statementAnimate(delayer, iterations, loopTokens) {
+  this.delayer = delayer;
   this.iterations = iterations;
   this.loopTokens = loopTokens;
 }
 
 statementAnimate.prototype.evaluate = function() {
-  var delay = this.delay;
+  var delayer = this.delayer;
   var iterations = this.iterations;
   var loopTokens = this.loopTokens;
 
   var counter = 0;
-  timeoutT = window.setTimeout(animate, delay);
-
+  timeoutT = window.setTimeout(animate, delayer);
 
   function animate() {
+
+
     var currentToken = 0;
     while(currentToken < loopTokens.length) {
       var statement = [];
@@ -64,11 +65,39 @@ statementAnimate.prototype.evaluate = function() {
         currentToken++;
       }
 
+      var data = new XMLSerializer().serializeToString(canvas);
+      var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+      var url = URL.createObjectURL(svgBlob);
+
+      var img = new Image();
+        img.onload = function () {
+          gif.addFrame(img, {
+            delay: 500,
+            copy: true
+          });
+          URL.revokeObjectURL(url);
+        };
+
+        img.src = url;
+
     if (counter < iterations - 1) {
+      console.log(iterations);
       counter++;
-      timeoutT = window.setTimeout(animate, delay);
+      timeoutT = window.setTimeout(animate, delayer);
+    } else {
+      console.log("KDJ");
+
+      console.log("KLD");
+      //setTimeout(downloadBlob('download.gif', svgBlob), delayer);
     }
+
+
+
+
+
+
   }
+
 }
 
 //----------------------------------------------------------------------------------------------

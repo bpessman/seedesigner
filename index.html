@@ -17,8 +17,7 @@
         <a class="button" onclick="compileClicked()" id="compileButton">Compile Code</a>
         <a class="button" type="button" onclick="clearClicked()" id="clearButton">Clear Console</a>
         <a class="button" type="button" onclick="clearCodeClicked()" id="clearCodeButton">Clear Code</a>
-        <a class="button" type="button" onclick="playClicked()" id="playButton">Play</a>
-        <a class="button" type="button" onclick="pauseClicked()" id="pauseButton">Pause</a>
+        <a class="button" type="button" onclick="downloadClicked()" id="downloadButton">Download</a>
 
       </center></h2>
     </div>
@@ -35,7 +34,7 @@
 
         <textarea style="width:500;height:450;background-color:rgb(243,243,243);" id="codeInputArea"></textarea>
 
-        <svg id="canvas" width="890" height="450"></svg>
+          <svg id="canvas" width="100" height="100"></svg>
 
         <textarea readonly style="width:500;height:250;background-color:rgb(243,243,243)" id="codeOutputArea"></textarea>
       </div> <!-- Content -->
@@ -45,6 +44,7 @@
     </div> <!-- Container -->
 
     <!-- SCRIPTS -->
+    <script src="libraries/gif.js-master/dist/gif.js"></script>
     <script src="common/js/other/Runtime.js"></script>
     <script src="common/js/other/KeyEvents.js"></script>
     <script src="common/js/other/RuntimeGlobalVariables.js"></script>
