@@ -5,8 +5,8 @@ var endTime; // End time of Runtime Clock
 var time; // Total time elapsed (startTime - ednTime)
 
 var gif = new GIF({
-  workers: 2,
-  quality: 10
+  workers: 3,
+  quality: 1
 });
 
 gif.setOption("debug", true);
@@ -26,7 +26,6 @@ function downloadBlob(name, blob) {
 }
 
 gif.on('finished', function(blob) {
-  console.log("OK");
   downloadBlob('download.gif', blob);
 });
 

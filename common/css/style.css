@@ -1,3 +1,74 @@
+@font-face {
+   font-family: myFirstFont;
+   src: url(Oswald-Regular.ttf);
+}
+
+* {
+   font-family: myFirstFont;
+}
+
+body {
+  background-color: #485175;
+  margin:0;
+}
+
+ul {
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333951;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+li {
+  /*  float: right; */
+}
+
+.leftnav {
+  float: left;
+}
+
+.rightnav {
+  float: right;
+}
+
+
+li a {
+    display: block;
+    color: #b5b5b7;
+    text-align: center;
+    padding: 22px 26px;
+    text-decoration: none;
+    text-shadow: 2px 2px  4px black;
+    font-size: 24px;
+}
+
+li a:hover {
+    background-color: #111;
+    color: #999b30;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 0px;
+  padding: 5px;
+}
+
+.grid-container > div {
+  background-color: rgba(200,200,200, 0.8);
+  text-align: left;
+  padding: 20px;
+  font-size: 30px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 8px 8px 10px;
+}
+
 textarea {
     resize: none;
     font-size: 16px;
@@ -5,55 +76,16 @@ textarea {
 
 svg {
   background-color: black;
+  width: 400px;
+  height: 400px;
 }
 
-button:focus, input:focus, textarea:focus {
-    outline: none;
+.console-textarea {
+  width: 100%;
+  height: 150px;
 }
 
-button {
-  font-size: 18px;
-  margin-left: 8px;
-}
-
-h2 {
-  font-size: 36px;
-  background-color: black;
-}
-
-.button, a:visited, a:active {
-  color: white;
-  text-decoration:none;
-  padding: 60px;
-}
-
-a:hover {
-  color: Tomato;
-  text-decoration:none;
-}
-
-.header {
-
-}
-
-.title {
-
-}
-
-.container {
-  padding-left: 0;
-  padding-right: 0;
-  min-height: 600px;
-}
-
-.navigation {
-
-}
-
-.content {
-
-}
-
-.footer {
-
+.input-textarea {
+  width: 100%;
+  height: 400px;
 }

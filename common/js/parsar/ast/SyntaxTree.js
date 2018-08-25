@@ -50,8 +50,6 @@ statementAnimate.prototype.evaluate = function() {
   timeoutT = window.setTimeout(animate, delayer);
 
   function animate() {
-
-
     var currentToken = 0;
     while(currentToken < loopTokens.length) {
       var statement = [];
@@ -69,6 +67,7 @@ statementAnimate.prototype.evaluate = function() {
       var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
       var url = URL.createObjectURL(svgBlob);
 
+
       var img = new Image();
         img.onload = function () {
           gif.addFrame(img, {
@@ -78,26 +77,13 @@ statementAnimate.prototype.evaluate = function() {
           URL.revokeObjectURL(url);
         };
 
-        img.src = url;
+      img.src = url;
 
     if (counter < iterations - 1) {
-      console.log(iterations);
       counter++;
       timeoutT = window.setTimeout(animate, delayer);
-    } else {
-      console.log("KDJ");
-
-      console.log("KLD");
-      //setTimeout(downloadBlob('download.gif', svgBlob), delayer);
-    }
-
-
-
-
-
-
+     } 
   }
-
 }
 
 //----------------------------------------------------------------------------------------------
@@ -188,7 +174,6 @@ statementSetObjectValue.prototype.evaluate = function() {
   var id = this.id;
   var value = this.value;
   var type = this.type;
-  console.log(value);
   value = value.evaluate();
   if (type == RANDOM) {
     type = NUMBER;
