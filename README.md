@@ -1,2 +1,5 @@
 # SeeScript's Future
-Currently, SeeScript is going under a major rehaul. The plan is to rebuild this language from the ground up, into a node module. This will allow you to use this in any web development project and easily embed the animations into your site.
+SeeScript is a programming language + NPM Module that allows you to programmatically create SVG animations. 
+
+## Revised Goal
+To create a NPM Module for the programming language, so you can embed animations into any website. For this to work, I will need the NPM module to act as a 'Movie Player' for the animations. Users will be able to feed in code using the SeeScript File Extension. A stretch goal to this would be to create syntax highlighting for VSCode.
