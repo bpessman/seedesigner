@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
 
-import SeeScript from 'seescript-dev'
-
-
+const SeeScript = require('seescript-dev')
 
 class App extends React.Component {
   componentDidMount() {
-    SeeScript.Connect("svg-root")
+    SeeScript("svg-root")
   }
 
   render() {
