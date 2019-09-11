@@ -1,0 +1,24 @@
+{
+  "name": "seescript",
+  "version": "1.0.0",
+  "description": "A programming language and player for SVG animations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonpessman/seescript.git"
+  },
+  "keywords": [
+    "svg",
+    "animations",
+    "language"
+  ],
+  "author": "Brandon Pessman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brandonpessman/seescript/issues"
+  },
+  "homepage": "https://github.com/brandonpessman/seescript#readme"
+}
