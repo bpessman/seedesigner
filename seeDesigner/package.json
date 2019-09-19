@@ -1,0 +1,54 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "foreman": "^3.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "3.1.2"
+  },
+  "scripts": {
+    "start": "nf start -p 3000",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-start": "node src/start-react",
+    "react-start": "BROWSER=none react-scripts start",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "install-app-deps"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^6.0.10",
+    "electron-builder": "^21.2.0"
+  },
+  "main": "src/electron.js",
+  "build": {
+    "appId": "seescript.id",
+    "mac": {
+      "category": "svg.design.tool"
+    },
+    "files": [
+      "build/**/*",
+      "package.json",
+      "./src/electron.js"
+    ]
+  }
+}
