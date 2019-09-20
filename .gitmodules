@@ -1,0 +1,3 @@
+[submodule "seeDesigner/src/seeDesigner"]
+	path = seeDesigner/src/seeDesigner
+	url = https://github.com/brandonpessman/seeDesigner.git
