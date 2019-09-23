@@ -1,0 +1,20 @@
+#canvas {
+  position: fixed;
+  width: 70%;
+  float: left;
+  right: 0;
+  min-height: 100%;
+}
+
+.svgCircle:hover {
+  stroke: black;
+  stroke-dasharray: 20;
+  stroke-width: 5px;
+}
+
+.static {
+  cursor: not-allowed;
+}
+.draggable {
+  cursor: move;
+}

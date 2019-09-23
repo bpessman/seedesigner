@@ -1,13 +1,12 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
+import Viewport from './components/Viewport/Viewport'
+import Navigation from './components/Navigation/Navigation'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+    <div>
+      <Viewport />
     </div>
   )
 }

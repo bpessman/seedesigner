@@ -1,0 +1,17 @@
+.tools {
+  position: fixed;
+  width: 30%;
+  float: left;
+  left: 0;
+  background-color: red;
+  min-height: 100%;
+}
+
+.canvas {
+  position: fixed;
+  width: 70%;
+  float: left;
+  right: 0;
+  background-color: rgb(240, 240, 240);
+  min-height: 100%;
+}
