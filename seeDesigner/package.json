@@ -2,11 +2,13 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "foreman": "^3.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "seescript": "1.0.0"
   },
   "scripts": {
     "start": "nf start -p 3000",
@@ -41,14 +43,13 @@
   },
   "main": "src/electron.js",
   "build": {
-    "appId": "seescript.id",
-    "mac": {
-      "category": "svg.design.tool"
-    },
+    "appId": "com.example.electron-cra",
     "files": [
       "build/**/*",
-      "package.json",
-      "./src/electron.js"
-    ]
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }
