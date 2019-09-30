@@ -1,9 +1,10 @@
 body {
-  background-color: #e6e6e6;
+  background-color: #222222;
   color: #282c34;
   margin: 0;
   top: 0;
   height: 100%;
+  font-family: 'Source Code Pro', monospace;
 }
 
 html {

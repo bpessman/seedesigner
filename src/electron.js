@@ -13,6 +13,9 @@ function createWindow() {
     height: 600,
     minHeight: 500,
     minWidth: 500,
+    darkTheme: true,
+    vibrancy: 'dark',
+    titleBarStyle: 'hidden',
   })
 
   mainWindow.loadURL(

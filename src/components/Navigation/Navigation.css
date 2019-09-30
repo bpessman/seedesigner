@@ -1,0 +1,48 @@
+.navigation {
+  background-color: rgb(54, 54, 54);
+  color: #ffffff;
+  padding-left: 70px;
+  height: 30px;
+  font-size: 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 8px 5px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: rgb(66, 66, 66);
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 8px 10px;
+  width: auto;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+}
+
+button:hover {
+  background-color: rgb(66, 66, 66);
+}

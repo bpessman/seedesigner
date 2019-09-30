@@ -24,6 +24,23 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      window.__setTheme = () => {
+        let userTheme = localStorage.user_theme
+        let OSTheme = localStorage.os_theme
+        let defaultTheme = 'light'
+        document.documentElement.setAttribute(
+          'data-theme',
+          userTheme || OSTheme || defaultTheme
+        )
+      }
+      __setTheme()
+    </script>
+
     <title>SeeDesigner</title>
   </head>
   <body>

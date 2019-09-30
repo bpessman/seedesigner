@@ -3,20 +3,16 @@
   width: 30%;
   float: left;
   left: 0;
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(75, 75, 75);
   min-height: 100%;
 }
 
 textarea {
   border: none;
-  font-size: 10px;
-  background: url(http://i.imgur.com/2cOaJ.png);
-  background-attachment: local;
-  background-repeat: no-repeat;
-  padding-left: 35px;
-  padding-top: 11px;
-  border-color: #ccc;
+  font-size: 12dpx;
   line-height: 16px;
+  padding: 4px;
+  color: white;
 }
 textarea:hover,
 input:hover,
