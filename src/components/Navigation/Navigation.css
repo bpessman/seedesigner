@@ -46,3 +46,16 @@ button {
 button:hover {
   background-color: rgb(66, 66, 66);
 }
+
+.draggable:hover {
+  stroke: black;
+  stroke-dasharray: 20;
+  stroke-width: 5px;
+}
+
+.static {
+  cursor: not-allowed;
+}
+.draggable {
+  cursor: move;
+}
