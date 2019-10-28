@@ -4,6 +4,7 @@ import './Canvas.css'
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       dragging: false,
     }
@@ -69,10 +70,6 @@ export default class Canvas extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <svg id="canvas"></svg>
-      </div>
-    )
+    return <svg id="canvas" />
   }
 }

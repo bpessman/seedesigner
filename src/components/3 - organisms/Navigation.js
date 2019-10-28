@@ -1,6 +1,6 @@
 import React from 'react'
 import './Navigation.css'
-import AceEditor from 'react-ace'
+import Button from '../1 - atoms/Button/Button'
 
 const seeScript = require('seescript')
 
@@ -28,6 +28,8 @@ export default class Viewport extends React.Component {
   }
 
   handleSubmitEdit() {
+    const { dragging } = this.state
+
     var canvas = document.getElementById('canvas')
 
     for (let i = 0; i < canvas.childNodes.length; i++) {
@@ -38,7 +40,7 @@ export default class Viewport extends React.Component {
         this.setState({ dragging: true })
       }
       childNode.onmousemove = e => {
-        if (this.state.dragging) {
+        if (dragging) {
           var CTM = document.getElementById('canvas').getScreenCTM()
           var fixedX = (e.clientX - CTM.e) / CTM.a - 25
           var fixedY = (e.clientY - CTM.f) / CTM.d - 25
@@ -58,9 +60,8 @@ export default class Viewport extends React.Component {
   render() {
     return (
       <div className="navigation">
-        <button onClick={this.handleSubmit}>Play</button>
-        <button onClick={this.handleSubmitEdit}>Edit</button>
-        <button>Download</button>
+        <Button onClick={this.handleSubmit} text="Play" />
+        <Button onClick={this.handleSubmitEdit} text="Edit Mode" />
       </div>
     )
   }

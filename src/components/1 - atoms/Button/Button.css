@@ -1,0 +1,16 @@
+button {
+  border: none;
+  margin: 0;
+  padding: 8px 10px;
+  width: auto;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+}
+
+button:hover {
+  background-color: rgb(66, 66, 66);
+}

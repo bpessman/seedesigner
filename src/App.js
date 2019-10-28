@@ -1,13 +1,11 @@
 import React from 'react'
 import './App.css'
-import Viewport from './components/Viewport/Viewport'
-import Navigation from './components/Navigation/Navigation'
+import Designer from './components/4 - templates/Designer'
 
 function App() {
   return (
     <div>
-      <Navigation />
-      <Viewport />
+      <Designer />
     </div>
   )
 }

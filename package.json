@@ -5,9 +5,9 @@
   "homepage": "./",
   "dependencies": {
     "foreman": "^3.0.1",
-    "react": "^16.9.0",
-    "react-ace": "^7.0.4",
-    "react-dom": "^16.9.0",
+    "react": "^16.11.0",
+    "react-ace": "^7.0.5",
+    "react-dom": "^16.11.0",
     "react-scripts": "3.1.2",
     "seescript": "1.0.5"
   },
@@ -39,7 +39,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "^6.0.10",
+    "electron": "^6.1.2",
     "electron-builder": "^21.2.0"
   },
   "main": "src/electron.js",

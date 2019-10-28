@@ -11,8 +11,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    minHeight: 500,
-    minWidth: 500,
+    minHeight: 800,
+    minWidth: 800,
     darkTheme: true,
     vibrancy: 'dark',
     titleBarStyle: 'hidden',
