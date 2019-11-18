@@ -7,7 +7,7 @@ export default class Button extends React.Component {
 
     this.state = {
       text: this.props.text,
-      onClick: this.props.onClick,
+      onClick: this.props.onClick
     }
   }
   render() {

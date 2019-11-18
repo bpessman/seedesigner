@@ -1,6 +1,10 @@
 import React from 'react'
 import './Navigation.css'
-import Button from '../1 - atoms/Button/Button'
+
+import PlayButton from '../1 - atoms/IconButtons/PlayButton'
+import SaveButton from '../1 - atoms/IconButtons/SaveButton'
+import GenerateButton from '../1 - atoms/IconButtons/GenerateButton'
+import DocumentationButton from '../1 - atoms/IconButtons/DocumentationButton'
 
 const seeScript = require('seescript')
 
@@ -60,8 +64,10 @@ export default class Viewport extends React.Component {
   render() {
     return (
       <div className="navigation">
-        <Button onClick={this.handleSubmit} text="Play" />
-        <Button onClick={this.handleSubmitEdit} text="Edit Mode" />
+        <PlayButton onClick={this.handleSubmit} />
+        <SaveButton onClick={this.handleSubmitEdit} />
+        <GenerateButton onClick={this.handleSubmit} />
+        <DocumentationButton onClick={this.handleSubmit} />
       </div>
     )
   }

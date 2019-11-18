@@ -1,0 +1,29 @@
+#tools {
+    position: absolute;
+    right: 10px;
+    top: 100px;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    width: 50px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+.toolButton {
+    border: none;
+    width: 100% !important;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    background: transparent;
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+  }
+  
+.toolButton:hover {
+    background-color: rgb(66, 66, 66);
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
