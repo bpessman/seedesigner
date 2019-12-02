@@ -5,12 +5,12 @@ import AceEditor from 'react-ace'
 import 'brace/theme/github'
 
 export default class Programming extends React.Component {
-  render() {
+  render () {
     return (
       <AceEditor
-        mode="java"
-        theme="github"
-        name="programmingTextarea"
+        mode='java'
+        theme='github'
+        name='programmingTextarea'
         editorProps={{ $blockScrolling: true }}
       />
     )

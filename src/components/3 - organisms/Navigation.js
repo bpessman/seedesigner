@@ -9,17 +9,17 @@ import DocumentationButton from '../1 - atoms/IconButtons/DocumentationButton'
 const seeScript = require('seescript')
 
 export default class Viewport extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
-      dragging: false,
+      dragging: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this)
   }
 
-  handleSubmit() {
+  handleSubmit () {
     const parent = document.getElementById('canvas')
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild)
@@ -31,9 +31,7 @@ export default class Viewport extends React.Component {
     )
   }
 
-  handleSubmitEdit() {
-    const { dragging } = this.state
-
+  handleSubmitEdit () {
     var canvas = document.getElementById('canvas')
 
     for (let i = 0; i < canvas.childNodes.length; i++) {
@@ -41,29 +39,32 @@ export default class Viewport extends React.Component {
       childNode.setAttribute('class', 'draggable')
 
       childNode.onmousedown = e => {
-        this.setState({ dragging: true })
+        this.setState({ dragging: e })
       }
       childNode.onmousemove = e => {
-        if (dragging) {
+        // if (dragging) {
+        if (this.state.dragging !== '') {
+          // console.log(this.state.dragging)
           var CTM = document.getElementById('canvas').getScreenCTM()
-          var fixedX = (e.clientX - CTM.e) / CTM.a - 25
-          var fixedY = (e.clientY - CTM.f) / CTM.d - 25
+          var fixedX = (this.state.dragging.clientX - CTM.e) / CTM.a - 50
+          var fixedY = (this.state.dragging.clientY - CTM.f) / CTM.d - 50
 
-          e.target.setAttribute('x', fixedX)
-          e.target.setAttribute('y', fixedY)
+          this.state.dragging.target.setAttribute('x', fixedX)
+          this.state.dragging.target.setAttribute('y', fixedY)
         }
+        // }
       }
       childNode.onmouseup = e => {
-        this.setState({ dragging: false })
+        this.setState({ dragging: '' })
       }
     }
 
-    console.log(canvas.childNodes)
+    console.log(this.state.dragging)
   }
 
-  render() {
+  render () {
     return (
-      <div className="navigation">
+      <div className='navigation'>
         <PlayButton onClick={this.handleSubmit} />
         <SaveButton onClick={this.handleSubmitEdit} />
         <GenerateButton onClick={this.handleSubmit} />

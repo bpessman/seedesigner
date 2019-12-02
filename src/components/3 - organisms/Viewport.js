@@ -5,16 +5,16 @@ import Programming from '../2 - molecules/Programming'
 import Tools from '../2 - molecules/Tools'
 
 export default class Viewport extends React.Component {
-  render() {
+  render () {
     return (
       <div>
-        <div className="programming">
+        <div className='programming'>
           <Programming />
         </div>
-        <div className="canvas">
+        <div className='canvass'>
           <Canvas />
         </div>
-        <div className="tools">
+        <div className='tools'>
           <Tools />
         </div>
       </div>
